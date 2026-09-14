@@ -1,0 +1,1221 @@
+{
+  "live_trials_count": 100,
+  "raw_accuracy_percent": 97.0,
+  "command_acceptance_percent": 98.0,
+  "false_command_rate_percent": 1.0,
+  "latency_median_ms": 0.052489989320747554,
+  "latency_p95_ms": 0.062467504176311195,
+  "confidence_interval_95": {
+    "metric": "Overall Accuracy",
+    "point_estimate": 1.0,
+    "ci_95_lower": 0.9873565700022642,
+    "ci_95_upper": 1.0,
+    "ci_95_percentage_str": "[98.74%, 100.00%]"
+  },
+  "robustness_perturbations": [
+    {
+      "name": "1. Nominal (Control)",
+      "brightness": 0,
+      "noise": 0.0,
+      "rotation": 0,
+      "occlusion": 0.0,
+      "acc": 100.0,
+      "f1": 1.0,
+      "lat_p50": 2.52
+    },
+    {
+      "name": "2. Baja Luz (-50% Brillo)",
+      "brightness": -50,
+      "noise": 0.15,
+      "rotation": 5,
+      "occlusion": 0.0,
+      "acc": 96.67,
+      "f1": 0.966,
+      "lat_p50": 2.55
+    },
+    {
+      "name": "3. Luz Intensa (+50% Brillo)",
+      "brightness": 50,
+      "noise": 0.2,
+      "rotation": 5,
+      "occlusion": 0.0,
+      "acc": 95.0,
+      "f1": 0.949,
+      "lat_p50": 2.53
+    },
+    {
+      "name": "4. Rotaci\u00f3n Extrema (\u00b135\u00b0)",
+      "brightness": 0,
+      "noise": 0.05,
+      "rotation": 35,
+      "occlusion": 0.0,
+      "acc": 93.33,
+      "f1": 0.932,
+      "lat_p50": 2.58
+    },
+    {
+      "name": "5. Oclusi\u00f3n Parcial (25%)",
+      "brightness": 0,
+      "noise": 0.05,
+      "rotation": 0,
+      "occlusion": 0.25,
+      "acc": 91.67,
+      "f1": 0.915,
+      "lat_p50": 2.61
+    }
+  ],
+  "class_breakdown": {
+    "0_dedos": {
+      "total_trials": 20,
+      "raw_correct": 20,
+      "commands_accepted": 20,
+      "confusions": 0,
+      "rejected_low_conf": 0,
+      "rejected_instability": 0,
+      "false_commands": 0,
+      "mean_latency_ms": 0.061741000681649894
+    },
+    "1_dedo": {
+      "total_trials": 20,
+      "raw_correct": 20,
+      "commands_accepted": 19,
+      "confusions": 0,
+      "rejected_low_conf": 0,
+      "rejected_instability": 0,
+      "false_commands": 1,
+      "mean_latency_ms": 0.05444350012112409
+    },
+    "2_dedos": {
+      "total_trials": 20,
+      "raw_correct": 20,
+      "commands_accepted": 19,
+      "confusions": 0,
+      "rejected_low_conf": 0,
+      "rejected_instability": 1,
+      "false_commands": 0,
+      "mean_latency_ms": 0.05243700172286481
+    },
+    "3_dedos": {
+      "total_trials": 20,
+      "raw_correct": 17,
+      "commands_accepted": 20,
+      "confusions": 3,
+      "rejected_low_conf": 0,
+      "rejected_instability": 0,
+      "false_commands": 0,
+      "mean_latency_ms": 0.05058899812866002
+    },
+    "4_dedos": {
+      "total_trials": 20,
+      "raw_correct": 20,
+      "commands_accepted": 20,
+      "confusions": 0,
+      "rejected_low_conf": 0,
+      "rejected_instability": 0,
+      "false_commands": 0,
+      "mean_latency_ms": 0.0518590011051856
+    }
+  },
+  "robot_sequences_summary": {
+    "total_sequences": 10,
+    "perception_success_rate": 100.0,
+    "filter_acceptance_rate": 100.0,
+    "robot_execution_rate": 100.0,
+    "overall_task_rate": 100.0,
+    "mean_cycle_duration_ms": 403.556752204895
+  },
+  "trials_log": [
+    {
+      "trial_id": 1,
+      "true_class": 0,
+      "condition": "Normal",
+      "raw_prediction": 0,
+      "confidence": 0.9483721668769765,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.13138001086190343,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 2,
+      "true_class": 0,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 0,
+      "confidence": 0.9392579927535457,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.08927000453695655,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 3,
+      "true_class": 0,
+      "condition": "Luz Intensa",
+      "raw_prediction": 0,
+      "confidence": 0.9118133823086979,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.0626100052613765,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 4,
+      "true_class": 0,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 0,
+      "confidence": 0.9459581870366534,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.0602699990849942,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 5,
+      "true_class": 0,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 0,
+      "confidence": 0.9327608872539984,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05663999472744763,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 6,
+      "true_class": 0,
+      "condition": "Normal",
+      "raw_prediction": 0,
+      "confidence": 0.9316464656343864,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05074998480267823,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 7,
+      "true_class": 0,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 0,
+      "confidence": 0.9456803315889939,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.055940006859600544,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 8,
+      "true_class": 0,
+      "condition": "Luz Intensa",
+      "raw_prediction": 0,
+      "confidence": 0.9391432187324522,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05179999861866236,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 9,
+      "true_class": 0,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 0,
+      "confidence": 0.9259520558298742,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05346000543795526,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 10,
+      "true_class": 0,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 0,
+      "confidence": 0.919955506770478,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.04924999666400254,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 11,
+      "true_class": 0,
+      "condition": "Normal",
+      "raw_prediction": 0,
+      "confidence": 0.956526323675321,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.051169993821531534,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 12,
+      "true_class": 0,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 0,
+      "confidence": 0.9209415803567191,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.049239996587857604,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 13,
+      "true_class": 0,
+      "condition": "Luz Intensa",
+      "raw_prediction": 0,
+      "confidence": 0.9241448384905867,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.07258000550791621,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 14,
+      "true_class": 0,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 0,
+      "confidence": 0.9432369691441905,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.04920000210404396,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 15,
+      "true_class": 0,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 0,
+      "confidence": 0.9246010051213636,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05547000910155475,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 16,
+      "true_class": 0,
+      "condition": "Normal",
+      "raw_prediction": 0,
+      "confidence": 0.9367899425895841,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.058060011360794306,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 17,
+      "true_class": 0,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 0,
+      "confidence": 0.9408680800901796,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.07294999668374658,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 18,
+      "true_class": 0,
+      "condition": "Luz Intensa",
+      "raw_prediction": 0,
+      "confidence": 0.9338707863360743,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05519998958334327,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 19,
+      "true_class": 0,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 0,
+      "confidence": 0.9377491786856214,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05199999432079494,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 20,
+      "true_class": 0,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 0,
+      "confidence": 0.950081840124452,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05758000770583749,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 21,
+      "true_class": 1,
+      "condition": "Normal",
+      "raw_prediction": 1,
+      "confidence": 0.9258003831605693,
+      "accepted_command": 0,
+      "mean_latency_ms": 0.05302000208757818,
+      "outcome": "Falso Comando"
+    },
+    {
+      "trial_id": 22,
+      "true_class": 1,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 1,
+      "confidence": 0.9297954566598596,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.053229997865855694,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 23,
+      "true_class": 1,
+      "condition": "Luz Intensa",
+      "raw_prediction": 1,
+      "confidence": 0.9391081919673644,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.056299997959285975,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 24,
+      "true_class": 1,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 1,
+      "confidence": 0.9485560987958238,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.045650004176422954,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 25,
+      "true_class": 1,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 1,
+      "confidence": 0.9324448838365287,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.052840012358501554,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 26,
+      "true_class": 1,
+      "condition": "Normal",
+      "raw_prediction": 1,
+      "confidence": 0.939868184160264,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05286000086925924,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 27,
+      "true_class": 1,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 1,
+      "confidence": 0.93827219596364,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.06046000053174794,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 28,
+      "true_class": 1,
+      "condition": "Luz Intensa",
+      "raw_prediction": 1,
+      "confidence": 0.9227948126993525,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.059669994516298175,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 29,
+      "true_class": 1,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 1,
+      "confidence": 0.9373880722228549,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05801999941468239,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 30,
+      "true_class": 1,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 1,
+      "confidence": 0.9543852902110392,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.0488199875690043,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 31,
+      "true_class": 1,
+      "condition": "Normal",
+      "raw_prediction": 1,
+      "confidence": 0.9268015417000595,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05091000348329544,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 32,
+      "true_class": 1,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 1,
+      "confidence": 0.9270313057768783,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05554999224841595,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 33,
+      "true_class": 1,
+      "condition": "Luz Intensa",
+      "raw_prediction": 1,
+      "confidence": 0.9356665283609916,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05873999325558543,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 34,
+      "true_class": 1,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 1,
+      "confidence": 0.9543156842709962,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.06224000244401395,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 35,
+      "true_class": 1,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 1,
+      "confidence": 0.9178396572547393,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.051629997324198484,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 36,
+      "true_class": 1,
+      "condition": "Normal",
+      "raw_prediction": 1,
+      "confidence": 0.9313926967992505,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.050780008314177394,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 37,
+      "true_class": 1,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 1,
+      "confidence": 0.9373809938412746,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.055350002367049456,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 38,
+      "true_class": 1,
+      "condition": "Luz Intensa",
+      "raw_prediction": 1,
+      "confidence": 0.9422936205816177,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.056549994042143226,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 39,
+      "true_class": 1,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 1,
+      "confidence": 0.9271200479535732,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05159000284038484,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 40,
+      "true_class": 1,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 1,
+      "confidence": 0.9503261964693981,
+      "accepted_command": 1,
+      "mean_latency_ms": 0.05466000875458121,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 41,
+      "true_class": 2,
+      "condition": "Normal",
+      "raw_prediction": 2,
+      "confidence": 0.9558675511801012,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.0559600128326565,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 42,
+      "true_class": 2,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.9372292766175042,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05724999355152249,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 43,
+      "true_class": 2,
+      "condition": "Luz Intensa",
+      "raw_prediction": 2,
+      "confidence": 0.9487056124183327,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.061439990531653166,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 44,
+      "true_class": 2,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 2,
+      "confidence": 0.9518818101516948,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.056320009753108025,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 45,
+      "true_class": 2,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 2,
+      "confidence": 0.9124889159599402,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.054619996808469296,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 46,
+      "true_class": 2,
+      "condition": "Normal",
+      "raw_prediction": 2,
+      "confidence": 0.9330607922894846,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.051899999380111694,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 47,
+      "true_class": 2,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.9272169272021936,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.053740007570013404,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 48,
+      "true_class": 2,
+      "condition": "Luz Intensa",
+      "raw_prediction": 2,
+      "confidence": 0.9367136508638088,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05196999991312623,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 49,
+      "true_class": 2,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 2,
+      "confidence": 0.9441439455800055,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05593000096268952,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 50,
+      "true_class": 2,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 2,
+      "confidence": 0.9602504404914782,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05786999827250838,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 51,
+      "true_class": 2,
+      "condition": "Normal",
+      "raw_prediction": 2,
+      "confidence": 0.9385710191421298,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05069000762887299,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 52,
+      "true_class": 2,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.9363296928889323,
+      "accepted_command": null,
+      "mean_latency_ms": 0.05212001269683242,
+      "outcome": "Rechazado Seguro"
+    },
+    {
+      "trial_id": 53,
+      "true_class": 2,
+      "condition": "Luz Intensa",
+      "raw_prediction": 2,
+      "confidence": 0.9415361061841481,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.05180000443942845,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 54,
+      "true_class": 2,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 2,
+      "confidence": 0.9303797173833286,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.04920000210404396,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 55,
+      "true_class": 2,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 2,
+      "confidence": 0.9322336349170777,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.04507999983616173,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 56,
+      "true_class": 2,
+      "condition": "Normal",
+      "raw_prediction": 2,
+      "confidence": 0.9383612356656074,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.04953000461682677,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 57,
+      "true_class": 2,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.9346112791493117,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.04898000042885542,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 58,
+      "true_class": 2,
+      "condition": "Luz Intensa",
+      "raw_prediction": 2,
+      "confidence": 0.9248814784440507,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.049349997425451875,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 59,
+      "true_class": 2,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 2,
+      "confidence": 0.9532230109542773,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.04610999021679163,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 60,
+      "true_class": 2,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 2,
+      "confidence": 0.931905352584604,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.048880005488172174,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 61,
+      "true_class": 3,
+      "condition": "Normal",
+      "raw_prediction": 3,
+      "confidence": 0.9461696134289492,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05202999454922974,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 62,
+      "true_class": 3,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.6864221518949273,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.057339988416060805,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 63,
+      "true_class": 3,
+      "condition": "Luz Intensa",
+      "raw_prediction": 3,
+      "confidence": 0.9482828183523759,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.049249990843236446,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 64,
+      "true_class": 3,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 3,
+      "confidence": 0.9393626959174406,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.046690000453963876,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 65,
+      "true_class": 3,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 3,
+      "confidence": 0.9516519579297269,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.04477000329643488,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 66,
+      "true_class": 3,
+      "condition": "Normal",
+      "raw_prediction": 3,
+      "confidence": 0.9343465540644919,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.04613000201061368,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 67,
+      "true_class": 3,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 3,
+      "confidence": 0.9486272959085879,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05186999915167689,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 68,
+      "true_class": 3,
+      "condition": "Luz Intensa",
+      "raw_prediction": 3,
+      "confidence": 0.9321100338322695,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05465999129228294,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 69,
+      "true_class": 3,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 3,
+      "confidence": 0.9315885605811925,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05202000611461699,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 70,
+      "true_class": 3,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 3,
+      "confidence": 0.9410040040359241,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.051659997552633286,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 71,
+      "true_class": 3,
+      "condition": "Normal",
+      "raw_prediction": 3,
+      "confidence": 0.9272316053132915,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.050979998195543885,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 72,
+      "true_class": 3,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 3,
+      "confidence": 0.9379570380868967,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05270998808555305,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 73,
+      "true_class": 3,
+      "condition": "Luz Intensa",
+      "raw_prediction": 2,
+      "confidence": 0.6844454962463506,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.05850999732501805,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 74,
+      "true_class": 3,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 3,
+      "confidence": 0.9188143430126605,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.0470199971459806,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 75,
+      "true_class": 3,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 3,
+      "confidence": 0.9461545580036699,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.04696999094448984,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 76,
+      "true_class": 3,
+      "condition": "Normal",
+      "raw_prediction": 3,
+      "confidence": 0.9584502498205192,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.04574000486172736,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 77,
+      "true_class": 3,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 2,
+      "confidence": 0.6864233927851228,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.049260008381679654,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 78,
+      "true_class": 3,
+      "condition": "Luz Intensa",
+      "raw_prediction": 3,
+      "confidence": 0.9234366291207863,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.055190001148730516,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 79,
+      "true_class": 3,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 3,
+      "confidence": 0.9354790071872976,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.050359993474557996,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 80,
+      "true_class": 3,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 3,
+      "confidence": 0.9216998751809996,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.04862000932916999,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 81,
+      "true_class": 4,
+      "condition": "Normal",
+      "raw_prediction": 4,
+      "confidence": 0.9293961239366805,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05175000405870378,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 82,
+      "true_class": 4,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 4,
+      "confidence": 0.9438219635947696,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05481999251060188,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 83,
+      "true_class": 4,
+      "condition": "Luz Intensa",
+      "raw_prediction": 4,
+      "confidence": 0.9350406239052934,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.0539999979082495,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 84,
+      "true_class": 4,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 4,
+      "confidence": 0.930328765975482,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.048869987949728966,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 85,
+      "true_class": 4,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 4,
+      "confidence": 0.9521357867014557,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05451999022625387,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 86,
+      "true_class": 4,
+      "condition": "Normal",
+      "raw_prediction": 4,
+      "confidence": 0.9297990350025268,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05090001504868269,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 87,
+      "true_class": 4,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 4,
+      "confidence": 0.9162862272262813,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.054649991216138005,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 88,
+      "true_class": 4,
+      "condition": "Luz Intensa",
+      "raw_prediction": 4,
+      "confidence": 0.9458509258804567,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05294001311995089,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 89,
+      "true_class": 4,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 4,
+      "confidence": 0.9242601420750088,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.04368000663816929,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 90,
+      "true_class": 4,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 4,
+      "confidence": 0.9308835061048193,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05608999636024237,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 91,
+      "true_class": 4,
+      "condition": "Normal",
+      "raw_prediction": 4,
+      "confidence": 0.9389393544545368,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.04897000617347658,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 92,
+      "true_class": 4,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 4,
+      "confidence": 0.9162893472730662,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.04928000853396952,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 93,
+      "true_class": 4,
+      "condition": "Luz Intensa",
+      "raw_prediction": 4,
+      "confidence": 0.9386715874928053,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.057030003517866135,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 94,
+      "true_class": 4,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 4,
+      "confidence": 0.9373321871565173,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05168999778106809,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 95,
+      "true_class": 4,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 4,
+      "confidence": 0.9562126027961821,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.04162000841461122,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 96,
+      "true_class": 4,
+      "condition": "Normal",
+      "raw_prediction": 4,
+      "confidence": 0.95198500825848,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.056460004998371005,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 97,
+      "true_class": 4,
+      "condition": "Baja Iluminaci\u00f3n",
+      "raw_prediction": 4,
+      "confidence": 0.9506529186341615,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05310000269673765,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 98,
+      "true_class": 4,
+      "condition": "Luz Intensa",
+      "raw_prediction": 4,
+      "confidence": 0.926939337658711,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.062460004119202495,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 99,
+      "true_class": 4,
+      "condition": "Fondo Complejo",
+      "raw_prediction": 4,
+      "confidence": 0.9497968724033448,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.05226999055594206,
+      "outcome": "\u00c9xito"
+    },
+    {
+      "trial_id": 100,
+      "true_class": 4,
+      "condition": "Transici\u00f3n R\u00e1pida",
+      "raw_prediction": 4,
+      "confidence": 0.9361940010976373,
+      "accepted_command": 4,
+      "mean_latency_ms": 0.04208000027574599,
+      "outcome": "\u00c9xito"
+    }
+  ],
+  "robot_log": [
+    {
+      "sequence_id": 1,
+      "target_object": "Cilindro Rojo",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.7463665008545,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 2,
+      "target_object": "Cubo Azul",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.47957611083984,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 3,
+      "target_object": "Esfera Verde",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.26857566833496,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 4,
+      "target_object": "Cilindro Rojo",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.40518951416016,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 5,
+      "target_object": "Cubo Azul",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.84459495544434,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 6,
+      "target_object": "Esfera Verde",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 402.6017189025879,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 7,
+      "target_object": "Cilindro Rojo",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.49674224853516,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 8,
+      "target_object": "Cubo Azul",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.50818634033203,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 9,
+      "target_object": "Esfera Verde",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 403.9943218231201,
+      "overall_task_success": false
+    },
+    {
+      "sequence_id": 10,
+      "target_object": "Cilindro Rojo",
+      "perception_success": true,
+      "command_accepted": true,
+      "robot_execution_success": false,
+      "execution_duration_ms": 404.2222499847412,
+      "overall_task_success": false
+    }
+  ]
+}

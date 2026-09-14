@@ -1,0 +1,104 @@
+{
+  "model_name": "GestureCNN_v1",
+  "total_parameters": 1438437,
+  "model_size_mb": 5.487201690673828,
+  "total_mac_flops": 117778944,
+  "test_samples": 150,
+  "overall_accuracy": 0.88,
+  "balanced_accuracy": 0.8800000000000001,
+  "f1_macro": 0.8791722571236125,
+  "precision_macro": 0.8901082901082902,
+  "recall_macro": 0.8800000000000001,
+  "confidence_interval_95": {
+    "metric": "Overall Accuracy",
+    "point_estimate": 0.88,
+    "ci_95_lower": 0.8182903386460476,
+    "ci_95_upper": 0.9227315956032063,
+    "ci_95_str": "[81.83%, 92.27%]"
+  },
+  "latency_p50_ms": 2.9391499992925674,
+  "latency_p95_ms": 3.264375010621733,
+  "latency_mean_ms": 2.9980366638240716,
+  "confusion_matrix": [
+    [
+      30,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      30,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      7,
+      23,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      26,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      7,
+      23
+    ]
+  ],
+  "per_class_metrics": {
+    "0_dedos": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 30.0
+    },
+    "1_dedo": {
+      "precision": 0.8108108108108109,
+      "recall": 1.0,
+      "f1-score": 0.8955223880597015,
+      "support": 30.0
+    },
+    "2_dedos": {
+      "precision": 0.8518518518518519,
+      "recall": 0.7666666666666667,
+      "f1-score": 0.8070175438596491,
+      "support": 30.0
+    },
+    "3_dedos": {
+      "precision": 0.7878787878787878,
+      "recall": 0.8666666666666667,
+      "f1-score": 0.8253968253968254,
+      "support": 30.0
+    },
+    "4_dedos": {
+      "precision": 1.0,
+      "recall": 0.7666666666666667,
+      "f1-score": 0.8679245283018868,
+      "support": 30.0
+    },
+    "accuracy": 0.88,
+    "macro avg": {
+      "precision": 0.8901082901082902,
+      "recall": 0.8800000000000001,
+      "f1-score": 0.8791722571236125,
+      "support": 150.0
+    },
+    "weighted avg": {
+      "precision": 0.8901082901082902,
+      "recall": 0.88,
+      "f1-score": 0.8791722571236126,
+      "support": 150.0
+    }
+  }
+}

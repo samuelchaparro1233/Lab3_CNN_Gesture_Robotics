@@ -1,0 +1,22 @@
+# ============================================================
+# Lab3 - CNN Gesture Recognition + CoppeliaSim
+# Entorno: Python 3.12 + PyTorch (CPU)
+# ============================================================
+
+# Deep Learning
+torch==2.3.1
+torchvision==0.18.1
+
+# Computer Vision
+opencv-python==4.10.0.84
+Pillow==10.4.0
+
+# Data / Science
+numpy==1.26.4  # PyTorch 2.3.1 requiere NumPy <2.0
+scipy==1.13.1
+scikit-learn==1.5.1
+matplotlib==3.9.1
+
+# Utilities
+PyYAML==6.0.2
+tqdm==4.66.5

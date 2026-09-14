@@ -1,0 +1,230 @@
+# ==============================================================================
+# Laboratorio 3: CNN para Reconocimiento de Gestos y Control en CoppeliaSim
+# Universidad Militar Nueva Granada - Inteligencia Artificial
+# ==============================================================================
+
+project:
+  name: "CNN Gesture Recognition - uArm with Gripper CoppeliaSim"
+  version: "1.1.0"
+  author: "Ingeniería Mecatrónica"
+
+# ------------------------------------------------------------------------------
+# 1. Parámetros del Dataset y Preprocesamiento
+# ------------------------------------------------------------------------------
+dataset:
+  classes:
+    - "0_dedos" # Clase 0: Puño cerrado / 0 dedos (Parada Lógica / Inhibición)
+    - "1_dedo"  # Clase 1: 1 dedo extendido (Articulación 1: Base Yaw +/- step)
+    - "2_dedos" # Clase 2: 2 dedos extendidos (Articulación 2: Hombro Pitch +/- step)
+    - "3_dedos" # Clase 3: 3 dedos extendidos (Articulación 3: Codo Pitch +/- step)
+    - "4_dedos" # Clase 4: 4 dedos extendidos (Pinza: Alternar Abrir / Cerrar)
+  
+  num_classes: 5
+  image_size: [64, 64] # [Height, Width]
+  channels: 1          # 1 = Grayscale (robusto a tono de piel), 3 = RGB
+  
+  # Normalización [0, 1] y estandarización
+  normalization:
+    mean: [0.5]
+    std: [0.5]
+    
+  # Rutas de almacenamiento
+  paths:
+    raw_data: "dataset/raw"
+    train_dir: "dataset/train"
+    val_dir: "dataset/val"
+    test_dir: "dataset/test"
+    synthetic_dir: "dataset/synthetic"
+
+  # Partición de datos (estricta por sujeto/sesión)
+  split:
+    train_ratio: 0.70
+    val_ratio: 0.15
+    test_ratio: 0.15
+
+# ------------------------------------------------------------------------------
+# 2. Arquitectura de la CNN e Hiperparámetros de Entrenamiento
+# ------------------------------------------------------------------------------
+model:
+  name: "GestureCNN_v1"
+  architecture:
+    conv_layers:
+      - filters: 32
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        pool_size: 2
+      - filters: 64
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        pool_size: 2
+      - filters: 128
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        pool_size: 2
+      - filters: 256
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        pool_size: 2
+    fc_layers:
+      - units: 256
+        dropout: 0.4
+      - units: 128
+        dropout: 0.3
+
+training:
+  batch_size: 32
+  epochs: 30
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  lr_scheduler:
+    type: "StepLR"
+    step_size: 10
+    gamma: 0.5
+  early_stopping_patience: 8
+  random_seed: 42
+  save_dir: "models/"
+  best_model_name: "best_gesture_cnn.pt"
+
+# ------------------------------------------------------------------------------
+# 3. Filtro Temporal de Comandos (Estabilidad y Seguridad)
+# ------------------------------------------------------------------------------
+command_filter:
+  confidence_threshold: 0.85 # Umbral mínimo de certeza
+  window_size: 10            # Longitud del búfer de cuadros (N = 10)
+  min_stable_count: 8        # Mínimo de aciertos concordantes en ventana (M = 8)
+  cooldown_seconds: 1.5      # Intervalo refractario entre comandos consecutivos (s)
+  idle_class: 0              # Clase 0 = Inhibición / Sin comando
+
+# ------------------------------------------------------------------------------
+# 4. Adaptador y Conexión con CoppeliaSim (Ruta Principal)
+# ------------------------------------------------------------------------------
+coppeliasim:
+  connection:
+    type: "zmqRemoteApi" # "zmqRemoteApi" o "legacy"
+    host: "127.0.0.1"
+    port: 23000
+    timeout_ms: 2000
+    
+  # Perfil activo: cambiar entre "uarm" y "robot3dof" según el robot en escena
+  active_robot: "uarm"
+
+  robots:
+    # ------------------------------------------------------------------
+    # Robot 1: uArm Swift Pro with Gripper (Librería CoppeliaSim)
+    # Modelo: Models/robots/non-mobile/uArm with gripper.ttm
+    # Joints en CoppeliaSim: uArm_servoJ1, uArm_servoJ2, uArm_servoJ3
+    # Pinza: uArm_servo_linear o uArm_suctionCup_respondable
+    # ------------------------------------------------------------------
+    uarm:
+      name: "uArm Swift Pro with Gripper"
+      scene_path: "scenes/uarm_scene.ttt"
+      joints:
+        joint1:                    # Rotacion base (Yaw) - Rango extendido
+          alias: "uArm_servoJ1"
+          fallback_aliases:        # Aliases alternativos si el modelo fue renombrado
+            - "joint"
+            - "servo_1"
+            - "servoJ1"
+          type: "revolute"
+          step_deg: 25.0           # Incremento de movimiento libre por gesto (25°)
+          min_limit_deg: -170.0    # Libertad de giro casi completa (+/- 170°)
+          max_limit_deg:  170.0
+        joint2:                    # Hombro (Pitch inferior) - Rango extendido
+          alias: "uArm_servoJ2"
+          fallback_aliases:
+            - "joint0"
+            - "servo_2"
+            - "servoJ2"
+          type: "revolute"
+          step_deg: 20.0           # Incremento por gesto (20°)
+          min_limit_deg: -30.0     # Alcance descendente y elevacion (-30° a 120°)
+          max_limit_deg: 120.0
+        joint3:                    # Codo (Pitch superior) - Rango extendido
+          alias: "uArm_servoJ3"
+          fallback_aliases:
+            - "joint1"
+            - "servo_3"
+            - "servoJ3"
+          type: "revolute"
+          step_deg: 20.0           # Incremento por gesto (20°)
+          min_limit_deg: -110.0    # Rango extendido de articulacion superior (-110° a 110°)
+          max_limit_deg:  110.0
+      gripper:
+        type: "suction"            # uArm usa ventosa/pinza lineal
+        signal: "uArm_suction"    # Señal ZeroMQ para activar ventosa
+        open_val: 0
+        close_val: 1
+        linear_joint: "uArm_servoLinear"
+        max_stroke_mm: 50.0        # Recorrido de apertura/cierre ampliado
+        action_speed: 2.0
+
+    # ------------------------------------------------------------------
+    # Robot 2: Brazo 3-GDL Educativo (original del laboratorio)
+    # ------------------------------------------------------------------
+    robot3dof:
+      name: "Robot3DoF Custom"
+      scene_path: "scenes/lab3_robot_3dof.ttt"
+      joints:
+        joint1:
+          alias: "Joint1"
+          fallback_aliases: ["motor1", "axis", "j1"]
+          type: "revolute"
+          step_deg: 25.0
+          min_limit_deg: -180.0
+          max_limit_deg:  180.0
+        joint2:
+          alias: "Joint2"
+          fallback_aliases: ["motor2", "j2"]
+          type: "revolute"
+          step_deg: 20.0
+          min_limit_deg: -120.0
+          max_limit_deg:  120.0
+        joint3:
+          alias: "Joint3"
+          fallback_aliases: ["motor3", "axis", "j3"]
+          type: "revolute"
+          step_deg: 20.0
+          min_limit_deg: -150.0
+          max_limit_deg:  150.0
+      gripper:
+        type: "toggle"
+        signal: "RG2_open"
+        open_val: 1
+        close_val: 0
+        linear_joint: null
+        action_speed: 2.0
+
+  scene:
+    objects:
+      - name: "Cylinder_Red"
+        type: "cylinder"
+        color: [1.0, 0.1, 0.1]
+      - name: "Cube_Blue"
+        type: "cube"
+        color: [0.1, 0.4, 1.0]
+      - name: "Sphere_Green"
+        type: "sphere"
+        color: [0.1, 0.9, 0.2]
+    drop_zone:
+      name: "DropZone"
+      target_pos: [0.4, 0.3, 0.1]
+
+# ------------------------------------------------------------------------------
+# 5. Inferencia en Vivo e Interfaz Gráfica
+# ------------------------------------------------------------------------------
+inference:
+  camera_index: 0
+  frame_width: 1280
+  frame_height: 720
+  roi_box:
+    x_min: 750
+    y_min: 100
+    width: 380
+    height: 380
+  skin_detection:
+    use_ycrcb: true
+    use_adaptive_thresh: true

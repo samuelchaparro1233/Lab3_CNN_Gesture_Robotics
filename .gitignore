@@ -1,0 +1,33 @@
+# Virtual Environments
+.venv/
+.venv312/
+venv/
+env/
+ENV/
+
+# Excluidos por solicitud explícita (guías y plantillas editables)
+*.docx
+*.pdf
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Temporary and Scratch Directories
+scratch/
+.gemini/
+*.log
+
+# IDE & Editor metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+Thumbs.db
+desktop.ini
+.DS_Store

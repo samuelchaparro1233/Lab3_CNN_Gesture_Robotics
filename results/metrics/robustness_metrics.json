@@ -1,0 +1,52 @@
+[
+  {
+    "name": "1. Nominal (Control)",
+    "brightness": 0,
+    "noise": 0.0,
+    "rotation": 0,
+    "occlusion": 0.0,
+    "acc": 100.0,
+    "f1": 1.0,
+    "lat_p50": 2.52
+  },
+  {
+    "name": "2. Baja Luz (-50% Brillo)",
+    "brightness": -50,
+    "noise": 0.15,
+    "rotation": 5,
+    "occlusion": 0.0,
+    "acc": 96.67,
+    "f1": 0.966,
+    "lat_p50": 2.55
+  },
+  {
+    "name": "3. Luz Intensa (+50% Brillo)",
+    "brightness": 50,
+    "noise": 0.2,
+    "rotation": 5,
+    "occlusion": 0.0,
+    "acc": 95.0,
+    "f1": 0.949,
+    "lat_p50": 2.53
+  },
+  {
+    "name": "4. Rotaci\u00f3n Extrema (\u00b135\u00b0)",
+    "brightness": 0,
+    "noise": 0.05,
+    "rotation": 35,
+    "occlusion": 0.0,
+    "acc": 93.33,
+    "f1": 0.932,
+    "lat_p50": 2.58
+  },
+  {
+    "name": "5. Oclusi\u00f3n Parcial (25%)",
+    "brightness": 0,
+    "noise": 0.05,
+    "rotation": 0,
+    "occlusion": 0.25,
+    "acc": 91.67,
+    "f1": 0.915,
+    "lat_p50": 2.61
+  }
+]
