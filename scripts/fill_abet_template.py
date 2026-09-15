@@ -202,7 +202,7 @@ def main():
     # R13 (idx 12): Enlace de Classroom o ubicación de la entrega
     set_cell_text(t1_rows[12].findall(f'{W}tc')[1], "https://classroom.google.com/u/2/c/ODcyMTkxNTg4ODAy/a/ODc2NjczMTQzNDk3/details")
     # R14 (idx 13): Notebook, repositorio y commit evaluado
-    set_cell_text(t1_rows[13].findall(f'{W}tc')[1], "Repositorio GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics | Commit evaluado: 78c7590 (rama main)")
+    set_cell_text(t1_rows[13].findall(f'{W}tc')[1], "Repositorio GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics | Commit evaluado: 3aa499e (rama main)")
     # R15 (idx 14): Fecha de entrega y comprobación individual
     set_cell_text(t1_rows[14].findall(f'{W}tc')[1], "15 de septiembre de 2026")
     # R16 (idx 15): Unidad de captura: producto de equipo con comprobación individual por integrante
