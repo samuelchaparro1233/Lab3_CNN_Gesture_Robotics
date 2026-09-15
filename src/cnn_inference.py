@@ -7,6 +7,7 @@ Universidad Militar Nueva Granada - Inteligencia Artificial
 import time
 import os
 import sys
+import math
 import random
 
 # Ensure project root is in sys.path
