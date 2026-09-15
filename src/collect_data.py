@@ -69,6 +69,7 @@ def collect_webcam_dataset(
     print("Controles:")
     print(" - [0, 1, 2, 3, 4] : Seleccionar clase activa (0 a 4 dedos).")
     print(" - [M]             : Cambiar mano activa (DERECHA <-> IZQUIERDA).")
+    print(" - [I] o [F]       : Invertir cámara horizontalmente (modo espejo On/Off).")
     print(" - [P]             : Cambiar participante / sujeto (subj_01 -> subj_02 ...).")
     print(" - [ESPACIO]       : Capturar ráfaga de fotos.")
     print(" - [C]             : Modo Grabación Continua (inicia/detiene captura).")
@@ -80,6 +81,7 @@ def collect_webcam_dataset(
     roi = (720, 90, 380, 380)  # (x, y, w, h)
     continuous_mode = False
     continuous_counter = 0
+    flip_camera = True  # Modo espejo activado por defecto
     
     cv2.namedWindow("Captura de Dataset Real - Lab 3 UMNG", cv2.WINDOW_NORMAL)
     cv2.resizeWindow("Captura de Dataset Real - Lab 3 UMNG", 1280, 720)
@@ -88,6 +90,8 @@ def collect_webcam_dataset(
         ret, frame = cap.read()
         if not ret:
             break
+        if flip_camera:
+            frame = cv2.flip(frame, 1)
             
         display = frame.copy()
         h, w = display.shape[:2]
@@ -161,6 +165,9 @@ def collect_webcam_dataset(
         elif key == ord('s') or key == ord('S') or key == ord('-'):
             burst_size = max(10, burst_size - 25)
             print(f"[Ráfaga ajustada] -> {burst_size} fotos")
+        elif key == ord('i') or key == ord('I') or key == ord('f') or key == ord('F'):
+            flip_camera = not flip_camera
+            print(f"[Cámara] Modo espejo: {'ACTIVADO' if flip_camera else 'DESACTIVADO'}")
         elif key == ord('c') or key == ord('C'):
             continuous_mode = not continuous_mode
             status = "INICIADA" if continuous_mode else "DETENIDA"
@@ -176,6 +183,8 @@ def collect_webcam_dataset(
                 r, f = cap.read()
                 if not r:
                     break
+                if flip_camera:
+                    f = cv2.flip(f, 1)
                 roi_crop = f[ry:ry+rh, rx:rx+rw]
                 roi_resized = cv2.resize(roi_crop, (128, 128))
                 

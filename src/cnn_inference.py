@@ -505,8 +505,8 @@ class GestureInferenceEngine:
 
         # Hotkeys
         cv2.putText(canvas,
-                    "[Q] Salir  [0-4] Gesto manual  [R] Reset filtro  [SPACE] Pick&Place",
-                    (col2_x, bpy + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.36, (140, 150, 175), 1)
+                    "[Q] Salir  [0-4] Gesto  [I] Invertir cam  [R] Reset  [SPACE] P&P",
+                    (col2_x, bpy + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (140, 150, 175), 1)
 
         return canvas
 

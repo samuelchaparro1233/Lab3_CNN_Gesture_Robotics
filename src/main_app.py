@@ -50,9 +50,12 @@ def run_app():
     
     current_sim_gesture = 0
     synthetic_hand_frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+    flip_camera = True  # Invertir cámara horizontalmente por defecto (modo espejo natural)
     
     running = True
     frame_idx = 0
+    
+    print("[Cámara] Inversión horizontal activada por defecto (modo espejo). Presiona [I] para alternar.")
     
     while running:
         t_now = time.time()
@@ -61,6 +64,8 @@ def run_app():
             ret, frame = cap.read()
             if not ret or frame is None:
                 frame = np.zeros((480, 640, 3), dtype=np.uint8)
+            elif flip_camera:
+                frame = cv2.flip(frame, 1)  # Volteo horizontal (modo espejo)
         else:
             # Generate simulated camera frame with animated background and hand
             synthetic_hand_frame[:] = (35, 40, 45)
@@ -101,6 +106,9 @@ def run_app():
         elif key in [ord('0'), ord('1'), ord('2'), ord('3'), ord('4')]:
             current_sim_gesture = int(chr(key))
             print(f"[Simulador de Gesto] Cambiado a Gesto {current_sim_gesture} ({chr(key)} dedos)")
+        elif key == ord('i') or key == ord('I') or key == ord('f') or key == ord('F'):
+            flip_camera = not flip_camera
+            print(f"[Cámara] Inversión horizontal: {'ACTIVADA (Modo Espejo)' if flip_camera else 'DESACTIVADA (Original)'}")
         elif key == ord('r') or key == ord('R'):
             engine.command_filter.reset()
             print("[Filtro] Búfer temporal reiniciado.")

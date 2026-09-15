@@ -75,10 +75,15 @@ class GestureDataset(Dataset):
             M[1, 2] += ty
             img_rot = cv2.warpAffine(img, M, (w, h), borderMode=cv2.BORDER_REFLECT)
             if self.channels == 1 and len(img_rot.shape) == 2:
-                img = np.expand_dims(img_rot, axis=-1)
-            else:
-                img = img_rot
-                
+                img_rot = np.expand_dims(img_rot, axis=-1)
+            # Random Horizontal Flip (50% probability) - Left/Right hand invariance
+            if random.random() < 0.50:
+                img_rot = cv2.flip(img_rot, 1)
+                if self.channels == 1 and len(img_rot.shape) == 2:
+                    img_rot = np.expand_dims(img_rot, axis=-1)
+
+            img = img_rot
+
             # Random Brightness & Contrast Jitter
             alpha = random.uniform(0.75, 1.25)  # Contrast
             beta = random.uniform(-25.0, 25.0)  # Brightness
