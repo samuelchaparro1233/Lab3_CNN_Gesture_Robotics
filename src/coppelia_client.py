@@ -122,9 +122,9 @@ class CoppeliaSimClient:
             
         try:
             import socket
-            with socket.create_connection((self.host, self.port), timeout=0.1):
+            with socket.create_connection((self.host, self.port), timeout=self.timeout_s):
                 pass
-        except Exception:
+        except Exception as sock_err:
             # Simulator not running on port 23000 -> instant fallback
             self.is_connected = False
             self.client = None

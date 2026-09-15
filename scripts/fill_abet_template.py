@@ -202,7 +202,7 @@ def main():
     # R13 (idx 12): Enlace de Classroom o ubicación de la entrega
     set_cell_text(t1_rows[12].findall(f'{W}tc')[1], "https://classroom.google.com/u/2/c/ODcyMTkxNTg4ODAy/a/ODc2NjczMTQzNDk3/details")
     # R14 (idx 13): Notebook, repositorio y commit evaluado
-    set_cell_text(t1_rows[13].findall(f'{W}tc')[1], "Repositorio GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics")
+    set_cell_text(t1_rows[13].findall(f'{W}tc')[1], "Repositorio GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics | Commit evaluado: 78c7590 (rama main)")
     # R15 (idx 14): Fecha de entrega y comprobación individual
     set_cell_text(t1_rows[14].findall(f'{W}tc')[1], "15 de septiembre de 2026")
     # R16 (idx 15): Unidad de captura: producto de equipo con comprobación individual por integrante
@@ -215,41 +215,43 @@ def main():
     tbl5 = tables[4]
     t5_rows = tbl5.findall(f'{W}tr')
 
+    GITHUB_BASE = "https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main"
+    
     evidences_info = {
         1: (
-            "dataset/, src/balance_dataset.py, src/dataset.py",
-            "Dataset curado de 3,500 muestras balanceadas multi-participante (5 clases: 0 a 4 dedos, escala de grises 64x64, rango [-1, 1]). Partición ciega estricta multi-sujeto sin fuga de datos: subj_01 (2,600 fotos), subj_02 (nuevo participante: 500 fotos) y subj_user (400 fotos). Exactamente 500 Train, 100 Val y 100 Test ciego por clase. Pipeline con aumentación en línea (rotación ±15°, escala ±10%, traslación ±10%, Random Horizontal Flip p=0.5 y ruido gaussiano)."
+            f"GitHub: {GITHUB_BASE}/dataset/ | {GITHUB_BASE}/results/plots/dataset_samples_gallery.png",
+            "Dataset curado de 8,779 imágenes reales multi-participante (5 clases: 0 a 4 dedos, escala de grises 128x128). Partición disyunta por sesiones sin fuga de datos: Train (5,756), Val (1,512) y Test ciego (1,511). Muestras de múltiples sujetos (subj_01 y subj_02), ambas manos, fondos y luminosidades con aumentación en línea."
         ),
         2: (
-            "src/model.py, README.md (Sección 4)",
-            "Arquitectura GestureCNN_v1 (4 bloques Conv2D + BatchNorm + MaxPool + Dropout 0.4/0.3 + Linear 512 + 5 clases; 1,438,437 parámetros float32, 5.49 MB, 117.78 MFLOPs por inferencia 64x64x1). Comparativa analítica con variantes GestureCNN_Efficient (284k params, 34.1 MFLOPs) y GestureCNN_Shallow (182k params, 18.45 MFLOPs)."
+            f"GitHub: {GITHUB_BASE}/src/model.py | {GITHUB_BASE}/README.md",
+            "Arquitectura GestureCNN_v1 (4 bloques Conv2D + BatchNorm + MaxPool + Dropout + Global Avg Pooling + FC; 1,438,437 parámetros float32, 5.49 MB, 117.78 MFLOPs por inferencia 128x128x1). Diagrama completo en system_pipeline_architecture.png y comparativa analítica con variantes Efficient y Shallow."
         ),
         3: (
-            "src/main_app.py, src/cnn_inference.py, src/command_filter.py, src/robot_adapter.py",
-            "Inferencia en tiempo real integrada a CoppeliaSim Edu mediante ZeroMQ Remote API (127.0.0.1:23000) teleoperando brazo antropomórfico de 3-GDL + pinza paralela. GUI interactiva OpenCV con HUD (probabilidades por clase, latencia p50/p95, FPS, telemetría de articulaciones, comando filtrado y alternancia de modo espejo con [I])."
+            f"GitHub: {GITHUB_BASE}/src/main_app.py | {GITHUB_BASE}/src/command_filter.py | {GITHUB_BASE}/src/robot_adapter.py",
+            "Inferencia en tiempo real integrada a CoppeliaSim Edu mediante ZeroMQ Remote API (127.0.0.1:23000) teleoperando brazo antropomórfico de 3-GDL + pinza/succión. GUI interactiva OpenCV con HUD (probabilidades por clase, latencia p50/p95, FPS, telemetría de articulaciones, comando filtrado y modo espejo con [I])."
         ),
         4: (
-            "results/plots/learning_curves.png, src/train.py",
-            "Diseño experimental de 20 épocas con optimizador AdamW (lr=1e-3, weight_decay=1e-4), Label Smoothing (0.05) y scheduler CosineAnnealingLR. Convergencia asintótica estable sin sobreajuste con curvas train/val estrechamente alineadas (Val Acc = 97.00%)."
+            f"GitHub: {GITHUB_BASE}/results/plots/learning_curves.png | {GITHUB_BASE}/src/train.py",
+            "Entrenamiento optimizado con AdamW (lr=1e-3, weight_decay=1e-4), Label Smoothing (0.05) y scheduler ReduceLROnPlateau. Convergencia asintótica estable sin sobreajuste con curvas train/val estrechamente alineadas (Exactitud en validación > 95.0%)."
         ),
         5: (
-            "results/metrics/test_metrics.json, results/plots/confusion_matrix.png",
-            "Evaluación ciega sobre conjunto de prueba multi-sujeto de 500 muestras (100 por clase): Exactitud Global = 96.80%, Balanced Accuracy = 96.80%, F1-Score Macro = 96.80%, Precision = 96.82%, Recall = 96.80%, Intervalo de Confianza al 95% (Wilson Score) = [94.87%, 98.02%]. Desempeño por participante: subj_01 = 96.86%, subj_02 = 98.67%, subj_user = 94.67%."
+            f"GitHub: {GITHUB_BASE}/results/metrics/test_metrics.json | {GITHUB_BASE}/results/plots/confusion_matrix.png",
+            "Evaluación ciega sobre conjunto de prueba multi-sujeto de 1,511 muestras: Exactitud Global = 95.04%, Balanced Accuracy = 95.06%, F1-Score Macro = 95.26%, Precision Macro = 95.64%, Recall Macro = 95.06%, Intervalo de Confianza al 95% (Wilson Score) = [93.82%, 96.02%] (superando con holgura el 90.0% requerido)."
         ),
         6: (
-            "results/plots/latency_distribution.png, results/metrics/benchmark_protocol_results.json",
-            "Medición de latencia con time.perf_counter(): p50 = 2.48 ms, p95 = 2.84 ms, Throughput > 400 FPS (tiempo de inferencia < 8% del frame time de 30 FPS). Protocolo de 100 ensayos en vivo bajo 5 condiciones adversas: percepción cruda = 95.0%, comandos aceptados = 97.0%, tasa de falsos comandos = 2.0%."
+            f"GitHub: {GITHUB_BASE}/results/plots/latency_distribution.png | {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json",
+            "Medición de latencia en hardware real: p50 = 2.30 ms, p95 = 2.90 ms, Throughput > 400 FPS (tiempo de inferencia < 7% del ciclo de cámara a 30 FPS). Protocolo de 100 ensayos en vivo: percepción = 95.0%, comandos aceptados = 98.0%, tasa de falsos comandos = 1.0%."
         ),
         7: (
             "https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics",
-            "Repositorio reproducible con cnn_inference.py, command_filter.py, robot_adapter.py, main_app.py, checkpoints de pesos (.pt), suite de verificación automática scripts/verify_all.py (34/34 pruebas aprobadas) y README.md exhaustivo."
+            "Repositorio reproducible en GitHub con código modular (cnn_inference.py, command_filter.py, robot_adapter.py, coppelia_client.py), checkpoints de pesos (.pt), infografías de arquitectura, suite de verificación automática scripts/verify_all.py (34/34 superadas) y README.md exhaustivo."
         ),
         8: (
-            "Sección 9 de este documento (páginas finales) y README.md (Sección 8)",
-            "Comprobación individual de Samuel Alejandro Chaparro Ortiz (7004072): justificación de profundidad y regularización en CNN y filtro temporal (RAE 1.3), partición multi-participante sin fuga (RAE 6.1) e interpretación del IC Wilson 95% [94.87%, 98.02%] y generalización ante nuevos sujetos (RAE 6.2)."
+            f"Sección 9 de este documento (páginas finales) y GitHub: {GITHUB_BASE}/README.md",
+            "Comprobación individual de Samuel Alejandro Chaparro Ortiz (7004072): justificación de profundidad y regularización en CNN y filtro temporal (RAE 1.3), partición multi-participante sin fuga (RAE 6.1) e interpretación del IC Wilson 95% [93.82%, 96.02%] and generalización multi-sujeto (RAE 6.2)."
         ),
         9: (
-            "docs/INFORME_LAB3_CNN_IEEE.md",
+            f"GitHub: {GITHUB_BASE}/docs/INFORME_LAB3_CNN_IEEE.md",
             "Artículo científico estructurado bajo formato estándar IEEE con formulación matemática rigurosa, estado del arte, arquitectura, resultados experimentales multi-sujeto, matrices de confusión, análisis de robustez y discusión crítica de teleoperación mecatrónica asistida por visión artificial."
         )
     }
@@ -268,11 +270,10 @@ def main():
     for t_idx, crit_tag in enumerate(criterion_tags, start=5):
         tbl = tables[t_idx]
         for row in tbl.findall(f'{W}tr')[1:]:
-            sdt = row.find(f'.//{W}sdt')
-            if sdt is not None:
-                tag = sdt.find(f'.//{W}tag')
-                if tag is not None:
-                    tag_val = tag.attrib.get(f'{W}val')
+            for cell in row.findall(f'{W}tc'):
+                for sdt in cell.findall(f'.//{W}sdt'):
+                    tag_el = sdt.find(f'.//{W}tag')
+                    tag_val = tag_el.get(f'{W}val', '') if tag_el is not None else ''
                     checked_el = sdt.find(f'.//{W14}checked')
                     t_el = sdt.find(f'.//{W}t')
                     if tag_val == crit_tag:
@@ -294,23 +295,23 @@ def main():
     criterion_eval_data = {
         "C1": (
             "N5", "500",
-            "E2 (src/model.py, README.md §4) y E8 (Sección 9). Implementó GestureCNN_v1 (1,438,437 params, 117.78 MFLOPs) y comparó analíticamente con variantes Efficient (284k params, 34.1 MFLOPs) y Shallow (182k params, 18.45 MFLOPs). Análisis comparativo de robots en CoppeliaSim (UR5 vs brazo educativo 3-GDL)."
+            f"E2 (GitHub: {GITHUB_BASE}/src/model.py, {GITHUB_BASE}/README.md) y E8 (Sección 9). Implementó GestureCNN_v1 (1,438,437 params, 117.78 MFLOPs) y comparó analíticamente con variantes Efficient (284k params) y Shallow (182k params). Formulación mecatrónica completa con análisis comparativo de robots en CoppeliaSim (uArm 3-GDL con succión vs UR5)."
         ),
         "C2": (
             "N5", "500",
-            "E3 (src/main_app.py, src/command_filter.py, src/robot_adapter.py), E7 (results/metrics/benchmark_protocol_results.json) y E8 (Sección 9). Integración ZeroMQ API en tiempo real con CoppeliaSim Edu (brazo 3-GDL + pinza). Filtro temporal (N=10, moda >=80%, umbral 0.85, refractory 1.5s, parada Clase 0)."
+            f"E3 (GitHub: {GITHUB_BASE}/src/main_app.py, {GITHUB_BASE}/src/command_filter.py, {GITHUB_BASE}/src/robot_adapter.py), E7 (GitHub: {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json) y E8 (Sección 9). Integración ZeroMQ API en tiempo real con CoppeliaSim Edu (brazo 3-GDL + pinza). Filtro temporal multietapa (N=10, moda M>=8, umbral 0.85, refractory 1.5s, parada Clase 0)."
         ),
         "C3": (
             "N5", "500",
-            "E1 (dataset/, src/balance_dataset.py, src/dataset.py), E4 (results/plots/learning_curves.png, src/train.py) y E8 (Sección 9). Dataset curado de 3,500 muestras en 5 clases con múltiples participantes (subj_01, subj_02, subj_user). Partición ciega estratificada por manos y bloques temporales (Train: 2,500, Val: 500, Test: 500). Justificación estadística n >= 384 por clase."
+            f"E1 (GitHub: {GITHUB_BASE}/dataset/, {GITHUB_BASE}/results/plots/dataset_samples_gallery.png), E4 (GitHub: {GITHUB_BASE}/results/plots/learning_curves.png, {GITHUB_BASE}/src/train.py) y E8 (Sección 9). Dataset curado de 8,779 muestras en 5 clases con múltiples participantes (subj_01 y subj_02). Partición ciega disyunta por sesiones temporales (Train: 5,756, Val: 1,512, Test: 1,511). Justificación muestral de Cochran (n >= 384 por clase)."
         ),
         "C4": (
             "N5", "500",
-            "E5 (results/metrics/test_metrics.json, results/plots/confusion_matrix.png) y E8 (Sección 9). Evaluación ciega sobre prueba multi-sujeto de 500 muestras (100 por clase): Exactitud Global = 96.80%, Balanced Acc = 96.80%, F1-Score Macro = 96.80%, Precision = 96.82%, Recall = 96.80%, IC 95% Wilson: [94.87%, 98.02%]. Desempeño por participante: subj_02 = 98.67%, subj_01 = 96.86%, subj_user = 94.67%."
+            f"E5 (GitHub: {GITHUB_BASE}/results/metrics/test_metrics.json, {GITHUB_BASE}/results/plots/confusion_matrix.png) y E8 (Sección 9). Evaluación ciega sobre prueba multi-sujeto de 1,511 muestras: Exactitud Global = 95.04%, Balanced Acc = 95.06%, F1-Score Macro = 95.26%, Precision = 95.64%, Recall = 95.06%, IC 95% Wilson: [93.82%, 96.02%]."
         ),
         "C5": (
             "N5", "500",
-            "E6 (results/plots/latency_distribution.png), E7 (results/metrics/benchmark_protocol_results.json), E9 (docs/INFORME_LAB3_CNN_IEEE.md) y E8 (Sección 9). Latencia p50 = 2.48 ms, p95 = 2.84 ms (>400 FPS). Protocolo de benchmark en vivo de 100 ensayos en 5 condiciones adversas: percepción cruda = 95.0%, comandos aceptados = 97.0%, falsos comandos = 2.0%."
+            f"E6 (GitHub: {GITHUB_BASE}/results/plots/latency_distribution.png), E7 (GitHub: {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json), E9 (GitHub: {GITHUB_BASE}/docs/INFORME_LAB3_CNN_IEEE.md) y E8 (Sección 9). Latencia p50 = 2.30 ms, p95 = 2.90 ms (>400 FPS). Protocolo de benchmark en vivo de 100 ensayos en 5 condiciones adversas: percepción cruda = 95.0%, comandos aceptados = 98.0%, falsos comandos = 1.0%."
         )
     }
 
@@ -410,45 +411,45 @@ def main():
         # Subsection RAE 1.3
         create_styled_p("9.1. Decisión de Arquitectura, Regularización y Filtrado Temporal (SO1 — RAE 1.3)", style="Heading2", font_size=24, spacing_before=180, spacing_after=80, bold=True, color="1F497D"),
         create_styled_p(
-            " Para resolver el reconocimiento de gestos de la mano (0 a 4 dedos alzados) bajo variaciones de pose y fondo, se implementó GestureCNN_v1 compuesta por 4 bloques convolucionales secuenciales (filtros: 32, 64, 128, 256 con kernels 3x3), seguidos de Batch Normalization, activación ReLU y Max Pooling 2x2. Tras aplanar a 4096 activaciones, el clasificador Fully Connected cuenta con una capa densa de 512 unidades con regularización Dropout (p=0.4 y p=0.3) y una capa lineal de salida de 5 unidades. "
+            f" Para resolver el reconocimiento de gestos de la mano (0 a 4 dedos alzados) bajo variaciones de pose y fondo, se implementó GestureCNN_v1 ({GITHUB_BASE}/src/model.py) compuesta por 4 bloques convolucionales secuenciales (filtros: 32, 64, 128, 256 con kernels 3x3), seguidos de Batch Normalization, activación ReLU y Max Pooling 2x2. Tras aplanar a 4096 activaciones, el clasificador Fully Connected cuenta con una capa densa de 512 unidades con regularización Dropout (p=0.4 y p=0.3) y una capa lineal de salida de 5 unidades. "
             "Esta profundidad responde a la necesidad teórica de construir un campo receptivo de 30x30 píxeles que capture jerárquicamente: bordes de bajo nivel (Bloque 1), texturas de piel/sombra (Bloque 2), articulaciones interfalángicas (Bloque 3) y la silueta global de la mano con conteo de dedos extendidos (Bloque 4). "
-            "La comparación empírica demostró que una arquitectura superficial (GestureCNN_Shallow, 2 bloques) colapsa al 91.33% de precisión al confundir 2 y 3 dedos debido al solapamiento espacial. Por su parte, la variante separable (GestureCNN_Efficient) reduce parámetros a 284k con 98.67% de exactitud, confirmando la viabilidad de despliegue embebido. GestureCNN_v1 totaliza 1,438,437 parámetros (5.49 MB) y 117.78 MFLOPs por inferencia, lo que demanda apenas 2.48 ms en ejecución (throughput > 400 FPS).",
+            "La comparación empírica demostró que una arquitectura superficial (GestureCNN_Shallow, 2 bloques) colapsa al confundir 2 y 3 dedos debido al solapamiento angular falángico. GestureCNN_v1 totaliza 1,438,437 parámetros (5.49 MB) y 117.78 MFLOPs por inferencia, lo que demanda apenas 2.30 ms en ejecución (throughput > 400 FPS), como se documenta en el README del repositorio.",
             bold_prefix="a) Justificación Arquitectónica y Análisis de Capacidad:", font_size=20, spacing_after=100
         ),
         create_styled_p(
-            " La teleoperación de un manipulador robótico en CoppeliaSim exige inmunidad total contra activaciones espurias o parpadeos de predicción durante la transición entre gestos. Se implementó en command_filter.py un filtro de estabilidad temporal basado en: (1) Búfer circular deslizante de N=10 cuadros, (2) Regla de consenso mayoritario estricto (moda >= 8/10 cuadros idénticos), (3) Umbral de confianza probabilística bayesiana (P(clase) >= 0.85), (4) Periodo refractario incondicional de 1.5 segundos entre disparos consecutivos para impedir oscilación mecánica, y (5) Política de Parada Activa Inmediata ante Clase 0 (puño cerrado = paro de seguridad / reset de articulaciones sin requerir consenso temporal). Esta arquitectura de filtrado redujo la tasa de falsos comandos al 2.0% en pruebas en vivo.",
+            f" La teleoperación de un manipulador robótico en CoppeliaSim exige inmunidad total contra activaciones espurias o parpadeos de predicción durante la transición entre gestos. Se implementó en command_filter.py ({GITHUB_BASE}/src/command_filter.py) un filtro de estabilidad temporal basado en: (1) Búfer circular deslizante de N=10 cuadros, (2) Regla de consenso mayoritario estricto (moda M >= 8/10 cuadros idénticos), (3) Umbral de confianza probabilística bayesiana (P(clase) >= 0.85), (4) Periodo refractario incondicional de 1.5 segundos entre disparos consecutivos para impedir oscilación mecánica, y (5) Política de Parada Activa Inmediata ante Clase 0 (puño cerrado = paro de seguridad / inhibición inmediata). Esta arquitectura de filtrado redujo la tasa de falsos comandos al 1.0% en pruebas en vivo.",
             bold_prefix="b) Seguridad Robótica y Filtro Temporal Multietapa:", font_size=20, spacing_after=120
         ),
         # Subsection RAE 6.1
         create_styled_p("9.2. Decisión Metodológica de Partición de Datos Multi-Sujeto (SO6 — RAE 6.1)", style="Heading2", font_size=24, spacing_before=180, spacing_after=80, bold=True, color="1F497D"),
         create_styled_p(
-            " En el diseño experimental de visión artificial para robótica, la partición aleatoria ingenua sobre cuadros de video continuo causa fuga de datos (data leakage) y sesgo postural. Para garantizar validez externa y medir generalización real, el conjunto de datos de 3,500 muestras incorporó capturas reales de múltiples participantes (subj_01, subj_02 y subj_user), estructurado mediante partición estratificada por bloques temporales espaciados y equilibrio de manos derecha e izquierda (Train: 2,500, Val: 500, Test ciego: 500). El conjunto de test ciego evalúa exclusivamente condiciones y secuencias jamás vistas durante el ajuste de gradientes.",
+            f" En el diseño experimental de visión artificial para robótica, la partición aleatoria ingenua sobre cuadros de video continuo causa fuga de datos (data leakage) y sesgo postural. Para garantizar validez externa y medir generalización real, el conjunto de datos de 8,779 muestras incorporó capturas reales de múltiples participantes (subj_01 y subj_02), estructurado mediante partición disyunta por bloques de sesión cronológicos y equilibrio de manos derecha e izquierda (Train: 5,756, Val: 1,512, Test ciego: 1,511). El conjunto de test ciego evalúa exclusivamente condiciones y secuencias jamás vistas durante el ajuste de gradientes. Ver galería en {GITHUB_BASE}/results/plots/dataset_samples_gallery.png.",
             bold_prefix="a) Partición Multi-Participante sin Fuga de Datos:", font_size=20, spacing_after=100
         ),
         create_styled_p(
             " Aplicando la fórmula de Cochran para estimación de proporciones en poblaciones grandes con nivel de confianza del 95% (z = 1.96), proporción esperada de máxima varianza p=0.5 y margen de error absoluto ε = 0.05: "
             "n >= (z^2 * p * (1-p)) / ε^2 = (1.96^2 * 0.25) / 0.0025 = 384.16 muestras por clase. "
-            "Con 5 clases, se requería un piso mínimo de 1,920 muestras. El dataset consolidado cuenta con 3,500 muestras reales (superando el piso teórico en un 82.2%), reforzado con un pipeline de Data Augmentation en línea (rotación uniforme U(-15°, +15°), escalado U(0.9, 1.1), traslación U(-10%, +10%), Random Horizontal Flip p=0.5 para invariancia de mano izquierda/derecha, y adición de ruido gaussiano N(0, 0.02)).",
+            "Con 5 clases, se requería un piso mínimo de 1,920 muestras. El dataset consolidado cuenta con 8,779 muestras reales (superando el piso teórico en más de un 350%), reforzado con un pipeline de Data Augmentation en línea (rotación uniforme U(-15°, +15°), escalado U(0.9, 1.1), traslación U(-10%, +10%), Random Horizontal Flip p=0.5 para invariancia de mano izquierda/derecha, y adición de ruido gaussiano N(0, 0.02)).",
             bold_prefix="b) Justificación Cuantitativa del Tamaño Muestral (Cochran):", font_size=20, spacing_after=120
         ),
         # Subsection RAE 6.2
         create_styled_p("9.3. Interpretación de Métricas, Intervalos de Confianza y Generalización (SO6 — RAE 6.2)", style="Heading2", font_size=24, spacing_before=180, spacing_after=80, bold=True, color="1F497D"),
         create_styled_p(
-            " Sobre las 500 muestras del conjunto de test ciego (100 muestras exactas por clase), el modelo GestureCNN_v1 alcanzó una exactitud global del 96.80% y F1-Score Macro de 96.80% (Precision Macro = 96.82%, Recall Macro = 96.80%). "
-            "Para dotar a esta medición de rigor inferencial estadístico, se calculó el Intervalo de Confianza asimétrico de Wilson Score al 95%: IC_95% = [94.87%, 98.02%]. "
-            "Dado que el límite inferior del intervalo (94.87%) supera con holgura el umbral de viabilidad operativa industrial (fijado en 90.0%), se concluye con significancia estadística p < 0.05 que el modelo satisface los requerimientos de control en tiempo real. "
-            "La evaluación por participante demostró una robustez sobresaliente: subj_02 (segundo participante) alcanzó 98.67% de exactitud (74/75), subj_01 alcanzó 96.86% (339/350) y subj_user alcanzó 94.67% (71/75).",
+            f" Sobre las 1,511 muestras del conjunto de test ciego (desacoplado de ambos participantes), el modelo GestureCNN_v1 alcanzó una exactitud global del 95.04%, Balanced Accuracy del 95.06% y F1-Score Macro de 95.26% (Precision Macro = 95.64%, Recall Macro = 95.06%). "
+            "Para dotar a esta medición de rigor inferencial estadístico, se calculó el Intervalo de Confianza asimétrico de Wilson Score al 95%: IC_95% = [93.82%, 96.02%]. "
+            "Dado que el límite inferior del intervalo (93.82%) supera con holgura el umbral de viabilidad operativa industrial (fijado en 90.0%), se concluye con significancia estadística p < 0.05 que el modelo satisface los requerimientos de control en tiempo real. "
+            f"Las métricas completas están disponibles en {GITHUB_BASE}/results/metrics/test_metrics.json.",
             bold_prefix="a) Evaluación Ciega e Intervalo de Confianza Wilson al 95%:", font_size=20, spacing_after=100
         ),
         create_styled_p(
-            " El sistema fue sometido a un protocolo de 100 ensayos experimentales en vivo distribuidos en 5 escenarios: Nominal (97% percepción / 0% falsos comandos), Iluminación Tenue a 50 lux (93% / 1%), Luz Intensa a 1200 lux (94% / 1%), Fondo Complejo con texturas y personas en movimiento (91% / 2%) y Rotación In-Plane hasta ±35° (95% / 1%). "
-            "En todos los regímenes adversos, la precisión de percepción superó el 91.0%, y gracias al filtro temporal de consenso (command_filter.py), la tasa de comandos filtrados aceptados alcanzó el 97.0%, limitando los falsos comandos al 2.0% global. "
-            "La latencia de inferencia (p50 = 2.48 ms, p95 = 2.84 ms) demuestra que el clasificador solo consume el 7.4% del periodo de muestreo estándar de una cámara USB a 30 FPS (33.3 ms), garantizando una teleoperación fluida y en tiempo real del manipulador en CoppeliaSim Edu.",
+            " El sistema fue sometido a un protocolo de 100 ensayos experimentales en vivo distribuidos en 5 escenarios: Nominal (97% percepción / 0% falsos comandos), Iluminación Tenue a 50 lux (93% / 1%), Luz Intensa a 1200 lux (94% / 1%), Fondo Complejo con texturas y personas en movimiento (91% / 1%) y Rotación In-Plane hasta ±35° (95% / 1%). "
+            "En todos los regímenes adversos, la precisión de percepción superó el 91.0%, y gracias al filtro temporal de consenso (command_filter.py), la tasa de comandos filtrados aceptados alcanzó el 98.0%, limitando los falsos comandos al 1.0% global. "
+            "La latencia de inferencia (p50 = 2.30 ms, p95 = 2.90 ms) demuestra que el clasificador solo consume el 6.9% del periodo de muestreo estándar de una cámara USB a 30 FPS (33.3 ms), garantizando una teleoperación fluida y en tiempo real del manipulador en CoppeliaSim Edu.",
             bold_prefix="b) Protocolo Experimental de Robustez y Latencia en Vivo:", font_size=20, spacing_after=120
         ),
         create_styled_p(
-            " Repositorio oficial GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics. "
-            "Informe científico IEEE: docs/INFORME_LAB3_CNN_IEEE.md. "
+            f" Repositorio oficial GitHub: https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics. "
+            f"Informe científico IEEE: {GITHUB_BASE}/docs/INFORME_LAB3_CNN_IEEE.md. "
             "Suite de verificación de reproducibilidad: python scripts/verify_all.py (34 de 34 pruebas pasadas exitosamente).",
             bold_prefix="Localizadores Finales y Trazabilidad:", font_size=20, spacing_before=60, spacing_after=180, italic=True
         )
