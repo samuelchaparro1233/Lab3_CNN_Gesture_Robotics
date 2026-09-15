@@ -494,19 +494,25 @@ class GestureInferenceEngine:
                     (col2_x, bpy + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.40, conn_col, 1)
 
         j_angles = robot_status.get("joint_angles_deg", {"Joint1": 0, "Joint2": 0, "Joint3": 0})
+        dirs = getattr(self.robot_adapter, "step_directions", {})
+        d1 = '+' if dirs.get('Joint1', 1) > 0 else '-'
+        d2 = '+' if dirs.get('Joint2', 1) > 0 else '-'
+        d3 = '+' if dirs.get('Joint3', 1) > 0 else '-'
+        step_deg = math.degrees(getattr(self.robot_adapter, "joint1_step", math.radians(15.0)))
         angles_txt = (
-            f"J1:{j_angles.get('Joint1',0):.0f}deg "
-            f"J2:{j_angles.get('Joint2',0):.0f}deg "
-            f"J3:{j_angles.get('Joint3',0):.0f}deg  "
-            f"Pinza: {'ABIERTA' if robot_status.get('gripper_open', True) else 'CERRADA'}"
+            f"J1:{j_angles.get('Joint1',0):.0f}deg({d1}) "
+            f"J2:{j_angles.get('Joint2',0):.0f}deg({d2}) "
+            f"J3:{j_angles.get('Joint3',0):.0f}deg({d3}) "
+            f"Paso:{step_deg:.0f}deg "
+            f"Pinza:{'ABIERTA' if robot_status.get('gripper_open', True) else 'SUCCION'}"
         )
         cv2.putText(canvas, angles_txt,
-                    (col2_x, bpy + 40), cv2.FONT_HERSHEY_SIMPLEX, 0.40, COLOR_WHITE, 1)
+                    (col2_x, bpy + 40), cv2.FONT_HERSHEY_SIMPLEX, 0.38, COLOR_WHITE, 1)
 
         # Hotkeys
         cv2.putText(canvas,
-                    "[Q] Salir  [0-4] Gesto  [I] Invertir cam  [R] Reset  [SPACE] P&P",
-                    (col2_x, bpy + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (140, 150, 175), 1)
+                    "[Q]Salir [0-4]Gesto [I]Espejo [D]Dir(+/-) [H]Home [+/-]Paso [R]Reset [ESPACIO]P&P",
+                    (col2_x, bpy + 60), cv2.FONT_HERSHEY_SIMPLEX, 0.34, (140, 150, 175), 1)
 
         return canvas
 

@@ -124,6 +124,37 @@ class RobotAdapter:
             self.step_directions[joint_name] *= -1.0
             print(f"[RobotAdapter] Direction for {joint_name} set to: {'+' if self.step_directions[joint_name] > 0 else '-'}")
 
+    def toggle_all_directions(self):
+        """Toggles stepping direction for all joints simultaneously."""
+        for j in self.step_directions:
+            self.step_directions[j] *= -1.0
+        dirs_str = ", ".join(f"{k}: {'+' if v > 0 else '-'}" for k, v in self.step_directions.items())
+        print(f"[RobotAdapter] Todas las direcciones alternadas -> {dirs_str}")
+
+    def go_home(self) -> bool:
+        """Restores robot to a safe, natural home pose (centered work posture)."""
+        home_poses = {
+            "Joint1": 0.0,
+            "Joint2": math.radians(84.0),
+            "Joint3": math.radians(79.25)
+        }
+        print("[RobotAdapter] Retornando a posición HOME física segura...")
+        for jname, target_rad in home_poses.items():
+            self.client.set_joint_target_position(jname, target_rad)
+        self.gripper_open = True
+        self.client.set_gripper_state(True)
+        print("[RobotAdapter] Posición HOME alcanzada. Pinza/Succión abierta.")
+        return True
+
+    def adjust_step_size(self, delta_deg: float):
+        """Dynamically adjusts joint angular stepping increment (degrees)."""
+        current_deg = math.degrees(self.joint1_step)
+        new_deg = max(5.0, min(35.0, current_deg + delta_deg))
+        self.joint1_step = math.radians(new_deg)
+        self.joint2_step = math.radians(new_deg)
+        self.joint3_step = math.radians(new_deg)
+        print(f"[RobotAdapter] Paso angular ajustado a: {new_deg:.1f}° por comando.")
+
     def execute_command(self, command_class: int) -> Dict[str, Any]:
         """
         Executes a discrete mechatronic action based on the accepted gesture class.

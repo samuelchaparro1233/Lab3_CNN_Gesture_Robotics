@@ -123,36 +123,36 @@ coppeliasim:
       name: "uArm Swift Pro with Gripper"
       scene_path: "scenes/uarm_scene.ttt"
       joints:
-        joint1:                    # Rotacion base (Yaw) - Rango extendido
+        joint1:                    # Rotación base (Yaw) - Rango físico ampliado
           alias: "uArm_servoJ1"
           fallback_aliases:        # Aliases alternativos si el modelo fue renombrado
             - "joint"
             - "servo_1"
             - "servoJ1"
           type: "revolute"
-          step_deg: 25.0           # Incremento de movimiento libre por gesto (25°)
-          min_limit_deg: -170.0    # Libertad de giro casi completa (+/- 170°)
-          max_limit_deg:  170.0
-        joint2:                    # Hombro (Pitch inferior) - Rango extendido
+          step_deg: 15.0           # Paso angular óptimo y fluido (15°)
+          min_limit_deg: -180.0    # Giro completo de 360° en la base (-180° a +180°)
+          max_limit_deg:  180.0
+        joint2:                    # Hombro (Pitch inferior) - Alcance extendido
           alias: "uArm_servoJ2"
           fallback_aliases:
             - "joint0"
             - "servo_2"
             - "servoJ2"
           type: "revolute"
-          step_deg: 20.0           # Incremento por gesto (20°)
-          min_limit_deg: -30.0     # Alcance descendente y elevacion (-30° a 120°)
-          max_limit_deg: 120.0
-        joint3:                    # Codo (Pitch superior) - Rango extendido
+          step_deg: 15.0           # Incremento armónico por gesto (15°)
+          min_limit_deg: -20.0     # Descenso hacia la mesa (-20°) y elevación erguida (+140°)
+          max_limit_deg: 140.0
+        joint3:                    # Codo (Pitch superior) - Rango de trabajo amplio
           alias: "uArm_servoJ3"
           fallback_aliases:
             - "joint1"
             - "servo_3"
             - "servoJ3"
           type: "revolute"
-          step_deg: 20.0           # Incremento por gesto (20°)
-          min_limit_deg: -110.0    # Rango extendido de articulacion superior (-110° a 110°)
-          max_limit_deg:  110.0
+          step_deg: 15.0           # Incremento por gesto (15°)
+          min_limit_deg: -60.0     # Extensión frontal (-60°) y flexión alta (+140°)
+          max_limit_deg:  140.0
       gripper:
         type: "suction"            # uArm usa ventosa/pinza lineal
         signal: "uArm_suction"    # Señal ZeroMQ para activar ventosa

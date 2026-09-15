@@ -109,6 +109,14 @@ def run_app():
         elif key == ord('i') or key == ord('I') or key == ord('f') or key == ord('F'):
             flip_camera = not flip_camera
             print(f"[Cámara] Inversión horizontal: {'ACTIVADA (Modo Espejo)' if flip_camera else 'DESACTIVADA (Original)'}")
+        elif key == ord('d') or key == ord('D'):
+            engine.robot_adapter.toggle_all_directions()
+        elif key == ord('h') or key == ord('H'):
+            engine.robot_adapter.go_home()
+        elif key == ord('+') or key == ord('='):
+            engine.robot_adapter.adjust_step_size(+3.0)
+        elif key == ord('-') or key == ord('_'):
+            engine.robot_adapter.adjust_step_size(-3.0)
         elif key == ord('r') or key == ord('R'):
             engine.command_filter.reset()
             print("[Filtro] Búfer temporal reiniciado.")
