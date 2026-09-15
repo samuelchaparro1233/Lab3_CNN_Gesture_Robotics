@@ -1,10 +1,10 @@
 {
   "live_trials_count": 100,
-  "raw_accuracy_percent": 97.0,
-  "command_acceptance_percent": 98.0,
-  "false_command_rate_percent": 1.0,
-  "latency_median_ms": 0.052489989320747554,
-  "latency_p95_ms": 0.062467504176311195,
+  "raw_accuracy_percent": 96.0,
+  "command_acceptance_percent": 96.0,
+  "false_command_rate_percent": 3.0,
+  "latency_median_ms": 0.025294997612945735,
+  "latency_p95_ms": 0.04226000717608258,
   "confidence_interval_95": {
     "metric": "Overall Accuracy",
     "point_estimate": 1.0,
@@ -73,9 +73,29 @@
       "rejected_low_conf": 0,
       "rejected_instability": 0,
       "false_commands": 0,
-      "mean_latency_ms": 0.061741000681649894
+      "mean_latency_ms": 0.035267501370981336
     },
     "1_dedo": {
+      "total_trials": 20,
+      "raw_correct": 19,
+      "commands_accepted": 19,
+      "confusions": 1,
+      "rejected_low_conf": 0,
+      "rejected_instability": 0,
+      "false_commands": 1,
+      "mean_latency_ms": 0.026011001027654856
+    },
+    "2_dedos": {
+      "total_trials": 20,
+      "raw_correct": 18,
+      "commands_accepted": 19,
+      "confusions": 2,
+      "rejected_low_conf": 0,
+      "rejected_instability": 1,
+      "false_commands": 0,
+      "mean_latency_ms": 0.024332998727913946
+    },
+    "3_dedos": {
       "total_trials": 20,
       "raw_correct": 20,
       "commands_accepted": 19,
@@ -83,37 +103,17 @@
       "rejected_low_conf": 0,
       "rejected_instability": 0,
       "false_commands": 1,
-      "mean_latency_ms": 0.05444350012112409
-    },
-    "2_dedos": {
-      "total_trials": 20,
-      "raw_correct": 20,
-      "commands_accepted": 19,
-      "confusions": 0,
-      "rejected_low_conf": 0,
-      "rejected_instability": 1,
-      "false_commands": 0,
-      "mean_latency_ms": 0.05243700172286481
-    },
-    "3_dedos": {
-      "total_trials": 20,
-      "raw_correct": 17,
-      "commands_accepted": 20,
-      "confusions": 3,
-      "rejected_low_conf": 0,
-      "rejected_instability": 0,
-      "false_commands": 0,
-      "mean_latency_ms": 0.05058899812866002
+      "mean_latency_ms": 0.024688001140020788
     },
     "4_dedos": {
       "total_trials": 20,
-      "raw_correct": 20,
-      "commands_accepted": 20,
-      "confusions": 0,
+      "raw_correct": 19,
+      "commands_accepted": 19,
+      "confusions": 1,
       "rejected_low_conf": 0,
       "rejected_instability": 0,
-      "false_commands": 0,
-      "mean_latency_ms": 0.0518590011051856
+      "false_commands": 1,
+      "mean_latency_ms": 0.03167000104440376
     }
   },
   "robot_sequences_summary": {
@@ -122,7 +122,7 @@
     "filter_acceptance_rate": 100.0,
     "robot_execution_rate": 100.0,
     "overall_task_rate": 100.0,
-    "mean_cycle_duration_ms": 403.556752204895
+    "mean_cycle_duration_ms": 403.35893630981445
   },
   "trials_log": [
     {
@@ -130,9 +130,9 @@
       "true_class": 0,
       "condition": "Normal",
       "raw_prediction": 0,
-      "confidence": 0.9483721668769765,
+      "confidence": 0.9317544543416862,
       "accepted_command": 0,
-      "mean_latency_ms": 0.13138001086190343,
+      "mean_latency_ms": 0.11378999333828688,
       "outcome": "\u00c9xito"
     },
     {
@@ -140,9 +140,9 @@
       "true_class": 0,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 0,
-      "confidence": 0.9392579927535457,
+      "confidence": 0.9151207545199117,
       "accepted_command": 0,
-      "mean_latency_ms": 0.08927000453695655,
+      "mean_latency_ms": 0.07592000183649361,
       "outcome": "\u00c9xito"
     },
     {
@@ -150,9 +150,9 @@
       "true_class": 0,
       "condition": "Luz Intensa",
       "raw_prediction": 0,
-      "confidence": 0.9118133823086979,
+      "confidence": 0.9463672142659098,
       "accepted_command": 0,
-      "mean_latency_ms": 0.0626100052613765,
+      "mean_latency_ms": 0.03743999404832721,
       "outcome": "\u00c9xito"
     },
     {
@@ -160,9 +160,9 @@
       "true_class": 0,
       "condition": "Fondo Complejo",
       "raw_prediction": 0,
-      "confidence": 0.9459581870366534,
+      "confidence": 0.9424524759596672,
       "accepted_command": 0,
-      "mean_latency_ms": 0.0602699990849942,
+      "mean_latency_ms": 0.03290000604465604,
       "outcome": "\u00c9xito"
     },
     {
@@ -170,9 +170,9 @@
       "true_class": 0,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 0,
-      "confidence": 0.9327608872539984,
+      "confidence": 0.9562930239773398,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05663999472744763,
+      "mean_latency_ms": 0.02945000887848437,
       "outcome": "\u00c9xito"
     },
     {
@@ -180,9 +180,9 @@
       "true_class": 0,
       "condition": "Normal",
       "raw_prediction": 0,
-      "confidence": 0.9316464656343864,
+      "confidence": 0.9629897267349327,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05074998480267823,
+      "mean_latency_ms": 0.03152999561280012,
       "outcome": "\u00c9xito"
     },
     {
@@ -190,9 +190,9 @@
       "true_class": 0,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 0,
-      "confidence": 0.9456803315889939,
+      "confidence": 0.9436747460161573,
       "accepted_command": 0,
-      "mean_latency_ms": 0.055940006859600544,
+      "mean_latency_ms": 0.03670000587590039,
       "outcome": "\u00c9xito"
     },
     {
@@ -200,9 +200,9 @@
       "true_class": 0,
       "condition": "Luz Intensa",
       "raw_prediction": 0,
-      "confidence": 0.9391432187324522,
+      "confidence": 0.9324744841607109,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05179999861866236,
+      "mean_latency_ms": 0.032759999157860875,
       "outcome": "\u00c9xito"
     },
     {
@@ -210,9 +210,9 @@
       "true_class": 0,
       "condition": "Fondo Complejo",
       "raw_prediction": 0,
-      "confidence": 0.9259520558298742,
+      "confidence": 0.9568542419551156,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05346000543795526,
+      "mean_latency_ms": 0.034749991027638316,
       "outcome": "\u00c9xito"
     },
     {
@@ -220,9 +220,9 @@
       "true_class": 0,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 0,
-      "confidence": 0.919955506770478,
+      "confidence": 0.9470722279978886,
       "accepted_command": 0,
-      "mean_latency_ms": 0.04924999666400254,
+      "mean_latency_ms": 0.026130001060664654,
       "outcome": "\u00c9xito"
     },
     {
@@ -230,9 +230,9 @@
       "true_class": 0,
       "condition": "Normal",
       "raw_prediction": 0,
-      "confidence": 0.956526323675321,
+      "confidence": 0.921631780244222,
       "accepted_command": 0,
-      "mean_latency_ms": 0.051169993821531534,
+      "mean_latency_ms": 0.028109998675063252,
       "outcome": "\u00c9xito"
     },
     {
@@ -240,9 +240,9 @@
       "true_class": 0,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 0,
-      "confidence": 0.9209415803567191,
+      "confidence": 0.9216812310965302,
       "accepted_command": 0,
-      "mean_latency_ms": 0.049239996587857604,
+      "mean_latency_ms": 0.027339992811903358,
       "outcome": "\u00c9xito"
     },
     {
@@ -250,9 +250,9 @@
       "true_class": 0,
       "condition": "Luz Intensa",
       "raw_prediction": 0,
-      "confidence": 0.9241448384905867,
+      "confidence": 0.9349269900420036,
       "accepted_command": 0,
-      "mean_latency_ms": 0.07258000550791621,
+      "mean_latency_ms": 0.026350014377385378,
       "outcome": "\u00c9xito"
     },
     {
@@ -260,9 +260,9 @@
       "true_class": 0,
       "condition": "Fondo Complejo",
       "raw_prediction": 0,
-      "confidence": 0.9432369691441905,
+      "confidence": 0.9330318838228009,
       "accepted_command": 0,
-      "mean_latency_ms": 0.04920000210404396,
+      "mean_latency_ms": 0.025070004630833864,
       "outcome": "\u00c9xito"
     },
     {
@@ -270,9 +270,9 @@
       "true_class": 0,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 0,
-      "confidence": 0.9246010051213636,
+      "confidence": 0.9303110923384034,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05547000910155475,
+      "mean_latency_ms": 0.024280004436150193,
       "outcome": "\u00c9xito"
     },
     {
@@ -280,9 +280,9 @@
       "true_class": 0,
       "condition": "Normal",
       "raw_prediction": 0,
-      "confidence": 0.9367899425895841,
+      "confidence": 0.9681185445433876,
       "accepted_command": 0,
-      "mean_latency_ms": 0.058060011360794306,
+      "mean_latency_ms": 0.025300000561401248,
       "outcome": "\u00c9xito"
     },
     {
@@ -290,9 +290,9 @@
       "true_class": 0,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 0,
-      "confidence": 0.9408680800901796,
+      "confidence": 0.9405076996468953,
       "accepted_command": 0,
-      "mean_latency_ms": 0.07294999668374658,
+      "mean_latency_ms": 0.02658001030795276,
       "outcome": "\u00c9xito"
     },
     {
@@ -300,9 +300,9 @@
       "true_class": 0,
       "condition": "Luz Intensa",
       "raw_prediction": 0,
-      "confidence": 0.9338707863360743,
+      "confidence": 0.9480837253663962,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05519998958334327,
+      "mean_latency_ms": 0.024329987354576588,
       "outcome": "\u00c9xito"
     },
     {
@@ -310,9 +310,9 @@
       "true_class": 0,
       "condition": "Fondo Complejo",
       "raw_prediction": 0,
-      "confidence": 0.9377491786856214,
+      "confidence": 0.9478287118344613,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05199999432079494,
+      "mean_latency_ms": 0.022259994875639677,
       "outcome": "\u00c9xito"
     },
     {
@@ -320,9 +320,9 @@
       "true_class": 0,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 0,
-      "confidence": 0.950081840124452,
+      "confidence": 0.9176141662406446,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05758000770583749,
+      "mean_latency_ms": 0.024360022507607937,
       "outcome": "\u00c9xito"
     },
     {
@@ -330,9 +330,9 @@
       "true_class": 1,
       "condition": "Normal",
       "raw_prediction": 1,
-      "confidence": 0.9258003831605693,
+      "confidence": 0.9645590469579632,
       "accepted_command": 0,
-      "mean_latency_ms": 0.05302000208757818,
+      "mean_latency_ms": 0.02693998976610601,
       "outcome": "Falso Comando"
     },
     {
@@ -340,9 +340,9 @@
       "true_class": 1,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 1,
-      "confidence": 0.9297954566598596,
+      "confidence": 0.9384947676510697,
       "accepted_command": 1,
-      "mean_latency_ms": 0.053229997865855694,
+      "mean_latency_ms": 0.023520016111433506,
       "outcome": "\u00c9xito"
     },
     {
@@ -350,9 +350,9 @@
       "true_class": 1,
       "condition": "Luz Intensa",
       "raw_prediction": 1,
-      "confidence": 0.9391081919673644,
+      "confidence": 0.9308853366737734,
       "accepted_command": 1,
-      "mean_latency_ms": 0.056299997959285975,
+      "mean_latency_ms": 0.02291001146659255,
       "outcome": "\u00c9xito"
     },
     {
@@ -360,9 +360,9 @@
       "true_class": 1,
       "condition": "Fondo Complejo",
       "raw_prediction": 1,
-      "confidence": 0.9485560987958238,
+      "confidence": 0.9517994148759448,
       "accepted_command": 1,
-      "mean_latency_ms": 0.045650004176422954,
+      "mean_latency_ms": 0.022939988411962986,
       "outcome": "\u00c9xito"
     },
     {
@@ -370,9 +370,9 @@
       "true_class": 1,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 1,
-      "confidence": 0.9324448838365287,
+      "confidence": 0.9572175308704065,
       "accepted_command": 1,
-      "mean_latency_ms": 0.052840012358501554,
+      "mean_latency_ms": 0.02066001179628074,
       "outcome": "\u00c9xito"
     },
     {
@@ -380,9 +380,9 @@
       "true_class": 1,
       "condition": "Normal",
       "raw_prediction": 1,
-      "confidence": 0.939868184160264,
+      "confidence": 0.9484559012339622,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05286000086925924,
+      "mean_latency_ms": 0.02606999478302896,
       "outcome": "\u00c9xito"
     },
     {
@@ -390,9 +390,9 @@
       "true_class": 1,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 1,
-      "confidence": 0.93827219596364,
+      "confidence": 0.944628025259049,
       "accepted_command": 1,
-      "mean_latency_ms": 0.06046000053174794,
+      "mean_latency_ms": 0.022840005112811923,
       "outcome": "\u00c9xito"
     },
     {
@@ -400,9 +400,9 @@
       "true_class": 1,
       "condition": "Luz Intensa",
       "raw_prediction": 1,
-      "confidence": 0.9227948126993525,
+      "confidence": 0.9281640146962274,
       "accepted_command": 1,
-      "mean_latency_ms": 0.059669994516298175,
+      "mean_latency_ms": 0.025650003226473927,
       "outcome": "\u00c9xito"
     },
     {
@@ -410,9 +410,9 @@
       "true_class": 1,
       "condition": "Fondo Complejo",
       "raw_prediction": 1,
-      "confidence": 0.9373880722228549,
+      "confidence": 0.9365070475356919,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05801999941468239,
+      "mean_latency_ms": 0.030420004623010755,
       "outcome": "\u00c9xito"
     },
     {
@@ -420,9 +420,9 @@
       "true_class": 1,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 1,
-      "confidence": 0.9543852902110392,
+      "confidence": 0.9289766564607684,
       "accepted_command": 1,
-      "mean_latency_ms": 0.0488199875690043,
+      "mean_latency_ms": 0.03603000077418983,
       "outcome": "\u00c9xito"
     },
     {
@@ -430,19 +430,19 @@
       "true_class": 1,
       "condition": "Normal",
       "raw_prediction": 1,
-      "confidence": 0.9268015417000595,
+      "confidence": 0.9425274578981035,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05091000348329544,
+      "mean_latency_ms": 0.02840000088326633,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 32,
       "true_class": 1,
       "condition": "Baja Iluminaci\u00f3n",
-      "raw_prediction": 1,
-      "confidence": 0.9270313057768783,
+      "raw_prediction": 0,
+      "confidence": 0.6800978803355485,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05554999224841595,
+      "mean_latency_ms": 0.02527999458834529,
       "outcome": "\u00c9xito"
     },
     {
@@ -450,9 +450,9 @@
       "true_class": 1,
       "condition": "Luz Intensa",
       "raw_prediction": 1,
-      "confidence": 0.9356665283609916,
+      "confidence": 0.943407718568263,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05873999325558543,
+      "mean_latency_ms": 0.02283000503666699,
       "outcome": "\u00c9xito"
     },
     {
@@ -460,9 +460,9 @@
       "true_class": 1,
       "condition": "Fondo Complejo",
       "raw_prediction": 1,
-      "confidence": 0.9543156842709962,
+      "confidence": 0.9182515695531283,
       "accepted_command": 1,
-      "mean_latency_ms": 0.06224000244401395,
+      "mean_latency_ms": 0.029369996627792716,
       "outcome": "\u00c9xito"
     },
     {
@@ -470,9 +470,9 @@
       "true_class": 1,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 1,
-      "confidence": 0.9178396572547393,
+      "confidence": 0.9320762902866805,
       "accepted_command": 1,
-      "mean_latency_ms": 0.051629997324198484,
+      "mean_latency_ms": 0.027509999927133322,
       "outcome": "\u00c9xito"
     },
     {
@@ -480,9 +480,9 @@
       "true_class": 1,
       "condition": "Normal",
       "raw_prediction": 1,
-      "confidence": 0.9313926967992505,
+      "confidence": 0.9236085531800203,
       "accepted_command": 1,
-      "mean_latency_ms": 0.050780008314177394,
+      "mean_latency_ms": 0.025420001475140452,
       "outcome": "\u00c9xito"
     },
     {
@@ -490,9 +490,9 @@
       "true_class": 1,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 1,
-      "confidence": 0.9373809938412746,
+      "confidence": 0.9345043606527523,
       "accepted_command": 1,
-      "mean_latency_ms": 0.055350002367049456,
+      "mean_latency_ms": 0.02953999792225659,
       "outcome": "\u00c9xito"
     },
     {
@@ -500,9 +500,9 @@
       "true_class": 1,
       "condition": "Luz Intensa",
       "raw_prediction": 1,
-      "confidence": 0.9422936205816177,
+      "confidence": 0.9285219067033118,
       "accepted_command": 1,
-      "mean_latency_ms": 0.056549994042143226,
+      "mean_latency_ms": 0.026050000451505184,
       "outcome": "\u00c9xito"
     },
     {
@@ -510,9 +510,9 @@
       "true_class": 1,
       "condition": "Fondo Complejo",
       "raw_prediction": 1,
-      "confidence": 0.9271200479535732,
+      "confidence": 0.9411229599067743,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05159000284038484,
+      "mean_latency_ms": 0.022449996322393417,
       "outcome": "\u00c9xito"
     },
     {
@@ -520,9 +520,9 @@
       "true_class": 1,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 1,
-      "confidence": 0.9503261964693981,
+      "confidence": 0.9510203408177281,
       "accepted_command": 1,
-      "mean_latency_ms": 0.05466000875458121,
+      "mean_latency_ms": 0.02539000124670565,
       "outcome": "\u00c9xito"
     },
     {
@@ -530,29 +530,29 @@
       "true_class": 2,
       "condition": "Normal",
       "raw_prediction": 2,
-      "confidence": 0.9558675511801012,
+      "confidence": 0.9512945004904405,
       "accepted_command": 2,
-      "mean_latency_ms": 0.0559600128326565,
+      "mean_latency_ms": 0.022380007430911064,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 42,
       "true_class": 2,
       "condition": "Baja Iluminaci\u00f3n",
-      "raw_prediction": 2,
-      "confidence": 0.9372292766175042,
+      "raw_prediction": 3,
+      "confidence": 0.6804058710658323,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05724999355152249,
+      "mean_latency_ms": 0.024969992227852345,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 43,
       "true_class": 2,
       "condition": "Luz Intensa",
-      "raw_prediction": 2,
-      "confidence": 0.9487056124183327,
+      "raw_prediction": 3,
+      "confidence": 0.6876930732078251,
       "accepted_command": 2,
-      "mean_latency_ms": 0.061439990531653166,
+      "mean_latency_ms": 0.024380016839131713,
       "outcome": "\u00c9xito"
     },
     {
@@ -560,9 +560,9 @@
       "true_class": 2,
       "condition": "Fondo Complejo",
       "raw_prediction": 2,
-      "confidence": 0.9518818101516948,
+      "confidence": 0.9149512538581114,
       "accepted_command": 2,
-      "mean_latency_ms": 0.056320009753108025,
+      "mean_latency_ms": 0.02650999231263995,
       "outcome": "\u00c9xito"
     },
     {
@@ -570,9 +570,9 @@
       "true_class": 2,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 2,
-      "confidence": 0.9124889159599402,
+      "confidence": 0.9459534452171526,
       "accepted_command": 2,
-      "mean_latency_ms": 0.054619996808469296,
+      "mean_latency_ms": 0.025109993293881416,
       "outcome": "\u00c9xito"
     },
     {
@@ -580,9 +580,9 @@
       "true_class": 2,
       "condition": "Normal",
       "raw_prediction": 2,
-      "confidence": 0.9330607922894846,
+      "confidence": 0.9414112857460623,
       "accepted_command": 2,
-      "mean_latency_ms": 0.051899999380111694,
+      "mean_latency_ms": 0.02862000255845487,
       "outcome": "\u00c9xito"
     },
     {
@@ -590,9 +590,9 @@
       "true_class": 2,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 2,
-      "confidence": 0.9272169272021936,
+      "confidence": 0.9598409511535666,
       "accepted_command": 2,
-      "mean_latency_ms": 0.053740007570013404,
+      "mean_latency_ms": 0.02402999671176076,
       "outcome": "\u00c9xito"
     },
     {
@@ -600,9 +600,9 @@
       "true_class": 2,
       "condition": "Luz Intensa",
       "raw_prediction": 2,
-      "confidence": 0.9367136508638088,
+      "confidence": 0.9363505828388519,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05196999991312623,
+      "mean_latency_ms": 0.025379989529028535,
       "outcome": "\u00c9xito"
     },
     {
@@ -610,9 +610,9 @@
       "true_class": 2,
       "condition": "Fondo Complejo",
       "raw_prediction": 2,
-      "confidence": 0.9441439455800055,
+      "confidence": 0.9547010077611728,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05593000096268952,
+      "mean_latency_ms": 0.021570007083937526,
       "outcome": "\u00c9xito"
     },
     {
@@ -620,9 +620,9 @@
       "true_class": 2,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 2,
-      "confidence": 0.9602504404914782,
+      "confidence": 0.9431061422441398,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05786999827250838,
+      "mean_latency_ms": 0.023699994198977947,
       "outcome": "\u00c9xito"
     },
     {
@@ -630,9 +630,9 @@
       "true_class": 2,
       "condition": "Normal",
       "raw_prediction": 2,
-      "confidence": 0.9385710191421298,
+      "confidence": 0.9401440035984662,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05069000762887299,
+      "mean_latency_ms": 0.02571000368334353,
       "outcome": "\u00c9xito"
     },
     {
@@ -640,9 +640,9 @@
       "true_class": 2,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 2,
-      "confidence": 0.9363296928889323,
+      "confidence": 0.9259889667685318,
       "accepted_command": null,
-      "mean_latency_ms": 0.05212001269683242,
+      "mean_latency_ms": 0.024109991500154138,
       "outcome": "Rechazado Seguro"
     },
     {
@@ -650,9 +650,9 @@
       "true_class": 2,
       "condition": "Luz Intensa",
       "raw_prediction": 2,
-      "confidence": 0.9415361061841481,
+      "confidence": 0.9333785648325885,
       "accepted_command": 2,
-      "mean_latency_ms": 0.05180000443942845,
+      "mean_latency_ms": 0.024129991652444005,
       "outcome": "\u00c9xito"
     },
     {
@@ -660,9 +660,9 @@
       "true_class": 2,
       "condition": "Fondo Complejo",
       "raw_prediction": 2,
-      "confidence": 0.9303797173833286,
+      "confidence": 0.9433707650225847,
       "accepted_command": 2,
-      "mean_latency_ms": 0.04920000210404396,
+      "mean_latency_ms": 0.022380007430911064,
       "outcome": "\u00c9xito"
     },
     {
@@ -670,9 +670,9 @@
       "true_class": 2,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 2,
-      "confidence": 0.9322336349170777,
+      "confidence": 0.9246435668718361,
       "accepted_command": 2,
-      "mean_latency_ms": 0.04507999983616173,
+      "mean_latency_ms": 0.023250008234754205,
       "outcome": "\u00c9xito"
     },
     {
@@ -680,9 +680,9 @@
       "true_class": 2,
       "condition": "Normal",
       "raw_prediction": 2,
-      "confidence": 0.9383612356656074,
+      "confidence": 0.9316212461571662,
       "accepted_command": 2,
-      "mean_latency_ms": 0.04953000461682677,
+      "mean_latency_ms": 0.02590999356471002,
       "outcome": "\u00c9xito"
     },
     {
@@ -690,9 +690,9 @@
       "true_class": 2,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 2,
-      "confidence": 0.9346112791493117,
+      "confidence": 0.9205064829337956,
       "accepted_command": 2,
-      "mean_latency_ms": 0.04898000042885542,
+      "mean_latency_ms": 0.023389997659251094,
       "outcome": "\u00c9xito"
     },
     {
@@ -700,9 +700,9 @@
       "true_class": 2,
       "condition": "Luz Intensa",
       "raw_prediction": 2,
-      "confidence": 0.9248814784440507,
+      "confidence": 0.9289852234955983,
       "accepted_command": 2,
-      "mean_latency_ms": 0.049349997425451875,
+      "mean_latency_ms": 0.02590998192317784,
       "outcome": "\u00c9xito"
     },
     {
@@ -710,9 +710,9 @@
       "true_class": 2,
       "condition": "Fondo Complejo",
       "raw_prediction": 2,
-      "confidence": 0.9532230109542773,
+      "confidence": 0.9251211271029067,
       "accepted_command": 2,
-      "mean_latency_ms": 0.04610999021679163,
+      "mean_latency_ms": 0.022529996931552887,
       "outcome": "\u00c9xito"
     },
     {
@@ -720,9 +720,9 @@
       "true_class": 2,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 2,
-      "confidence": 0.931905352584604,
+      "confidence": 0.9418575698304807,
       "accepted_command": 2,
-      "mean_latency_ms": 0.048880005488172174,
+      "mean_latency_ms": 0.02269000979140401,
       "outcome": "\u00c9xito"
     },
     {
@@ -730,19 +730,19 @@
       "true_class": 3,
       "condition": "Normal",
       "raw_prediction": 3,
-      "confidence": 0.9461696134289492,
-      "accepted_command": 3,
-      "mean_latency_ms": 0.05202999454922974,
-      "outcome": "\u00c9xito"
+      "confidence": 0.9468675942205311,
+      "accepted_command": 2,
+      "mean_latency_ms": 0.02465999568812549,
+      "outcome": "Falso Comando"
     },
     {
       "trial_id": 62,
       "true_class": 3,
       "condition": "Baja Iluminaci\u00f3n",
-      "raw_prediction": 2,
-      "confidence": 0.6864221518949273,
+      "raw_prediction": 3,
+      "confidence": 0.9304856750139004,
       "accepted_command": 3,
-      "mean_latency_ms": 0.057339988416060805,
+      "mean_latency_ms": 0.030299992067739367,
       "outcome": "\u00c9xito"
     },
     {
@@ -750,9 +750,9 @@
       "true_class": 3,
       "condition": "Luz Intensa",
       "raw_prediction": 3,
-      "confidence": 0.9482828183523759,
+      "confidence": 0.958524252949101,
       "accepted_command": 3,
-      "mean_latency_ms": 0.049249990843236446,
+      "mean_latency_ms": 0.023659993894398212,
       "outcome": "\u00c9xito"
     },
     {
@@ -760,9 +760,9 @@
       "true_class": 3,
       "condition": "Fondo Complejo",
       "raw_prediction": 3,
-      "confidence": 0.9393626959174406,
+      "confidence": 0.9411203609216695,
       "accepted_command": 3,
-      "mean_latency_ms": 0.046690000453963876,
+      "mean_latency_ms": 0.023350020637735724,
       "outcome": "\u00c9xito"
     },
     {
@@ -770,9 +770,9 @@
       "true_class": 3,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 3,
-      "confidence": 0.9516519579297269,
+      "confidence": 0.9353862355843344,
       "accepted_command": 3,
-      "mean_latency_ms": 0.04477000329643488,
+      "mean_latency_ms": 0.022520008496940136,
       "outcome": "\u00c9xito"
     },
     {
@@ -780,9 +780,9 @@
       "true_class": 3,
       "condition": "Normal",
       "raw_prediction": 3,
-      "confidence": 0.9343465540644919,
+      "confidence": 0.9537084519386639,
       "accepted_command": 3,
-      "mean_latency_ms": 0.04613000201061368,
+      "mean_latency_ms": 0.023140007397159934,
       "outcome": "\u00c9xito"
     },
     {
@@ -790,9 +790,9 @@
       "true_class": 3,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 3,
-      "confidence": 0.9486272959085879,
+      "confidence": 0.9283845543801437,
       "accepted_command": 3,
-      "mean_latency_ms": 0.05186999915167689,
+      "mean_latency_ms": 0.02731999848037958,
       "outcome": "\u00c9xito"
     },
     {
@@ -800,9 +800,9 @@
       "true_class": 3,
       "condition": "Luz Intensa",
       "raw_prediction": 3,
-      "confidence": 0.9321100338322695,
+      "confidence": 0.9165139915725066,
       "accepted_command": 3,
-      "mean_latency_ms": 0.05465999129228294,
+      "mean_latency_ms": 0.022250000620260835,
       "outcome": "\u00c9xito"
     },
     {
@@ -810,9 +810,9 @@
       "true_class": 3,
       "condition": "Fondo Complejo",
       "raw_prediction": 3,
-      "confidence": 0.9315885605811925,
+      "confidence": 0.9494829976194011,
       "accepted_command": 3,
-      "mean_latency_ms": 0.05202000611461699,
+      "mean_latency_ms": 0.02223000628873706,
       "outcome": "\u00c9xito"
     },
     {
@@ -820,9 +820,9 @@
       "true_class": 3,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 3,
-      "confidence": 0.9410040040359241,
+      "confidence": 0.9700118245369583,
       "accepted_command": 3,
-      "mean_latency_ms": 0.051659997552633286,
+      "mean_latency_ms": 0.023220002185553312,
       "outcome": "\u00c9xito"
     },
     {
@@ -830,9 +830,9 @@
       "true_class": 3,
       "condition": "Normal",
       "raw_prediction": 3,
-      "confidence": 0.9272316053132915,
+      "confidence": 0.9273861913254711,
       "accepted_command": 3,
-      "mean_latency_ms": 0.050979998195543885,
+      "mean_latency_ms": 0.021870003547519445,
       "outcome": "\u00c9xito"
     },
     {
@@ -840,19 +840,19 @@
       "true_class": 3,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 3,
-      "confidence": 0.9379570380868967,
+      "confidence": 0.9471795271329565,
       "accepted_command": 3,
-      "mean_latency_ms": 0.05270998808555305,
+      "mean_latency_ms": 0.024390011094510555,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 73,
       "true_class": 3,
       "condition": "Luz Intensa",
-      "raw_prediction": 2,
-      "confidence": 0.6844454962463506,
+      "raw_prediction": 3,
+      "confidence": 0.9214834922560858,
       "accepted_command": 3,
-      "mean_latency_ms": 0.05850999732501805,
+      "mean_latency_ms": 0.025719980476424098,
       "outcome": "\u00c9xito"
     },
     {
@@ -860,9 +860,9 @@
       "true_class": 3,
       "condition": "Fondo Complejo",
       "raw_prediction": 3,
-      "confidence": 0.9188143430126605,
+      "confidence": 0.9443545544298061,
       "accepted_command": 3,
-      "mean_latency_ms": 0.0470199971459806,
+      "mean_latency_ms": 0.022409996017813683,
       "outcome": "\u00c9xito"
     },
     {
@@ -870,9 +870,9 @@
       "true_class": 3,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 3,
-      "confidence": 0.9461545580036699,
+      "confidence": 0.9370762825451369,
       "accepted_command": 3,
-      "mean_latency_ms": 0.04696999094448984,
+      "mean_latency_ms": 0.022329995408654213,
       "outcome": "\u00c9xito"
     },
     {
@@ -880,19 +880,19 @@
       "true_class": 3,
       "condition": "Normal",
       "raw_prediction": 3,
-      "confidence": 0.9584502498205192,
+      "confidence": 0.9483321795657995,
       "accepted_command": 3,
-      "mean_latency_ms": 0.04574000486172736,
+      "mean_latency_ms": 0.021929998183622956,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 77,
       "true_class": 3,
       "condition": "Baja Iluminaci\u00f3n",
-      "raw_prediction": 2,
-      "confidence": 0.6864233927851228,
+      "raw_prediction": 3,
+      "confidence": 0.9395817788887868,
       "accepted_command": 3,
-      "mean_latency_ms": 0.049260008381679654,
+      "mean_latency_ms": 0.025289994664490223,
       "outcome": "\u00c9xito"
     },
     {
@@ -900,9 +900,9 @@
       "true_class": 3,
       "condition": "Luz Intensa",
       "raw_prediction": 3,
-      "confidence": 0.9234366291207863,
+      "confidence": 0.9438934780929903,
       "accepted_command": 3,
-      "mean_latency_ms": 0.055190001148730516,
+      "mean_latency_ms": 0.023380009224638343,
       "outcome": "\u00c9xito"
     },
     {
@@ -910,9 +910,9 @@
       "true_class": 3,
       "condition": "Fondo Complejo",
       "raw_prediction": 3,
-      "confidence": 0.9354790071872976,
+      "confidence": 0.9257172617294266,
       "accepted_command": 3,
-      "mean_latency_ms": 0.050359993474557996,
+      "mean_latency_ms": 0.024049996864050627,
       "outcome": "\u00c9xito"
     },
     {
@@ -920,9 +920,9 @@
       "true_class": 3,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 3,
-      "confidence": 0.9216998751809996,
+      "confidence": 0.9280673306405692,
       "accepted_command": 3,
-      "mean_latency_ms": 0.04862000932916999,
+      "mean_latency_ms": 0.03974001156166196,
       "outcome": "\u00c9xito"
     },
     {
@@ -930,19 +930,19 @@
       "true_class": 4,
       "condition": "Normal",
       "raw_prediction": 4,
-      "confidence": 0.9293961239366805,
-      "accepted_command": 4,
-      "mean_latency_ms": 0.05175000405870378,
-      "outcome": "\u00c9xito"
+      "confidence": 0.9221022392189708,
+      "accepted_command": 3,
+      "mean_latency_ms": 0.0222400005441159,
+      "outcome": "Falso Comando"
     },
     {
       "trial_id": 82,
       "true_class": 4,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 4,
-      "confidence": 0.9438219635947696,
+      "confidence": 0.9515848727247088,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05481999251060188,
+      "mean_latency_ms": 0.027329998556524515,
       "outcome": "\u00c9xito"
     },
     {
@@ -950,9 +950,9 @@
       "true_class": 4,
       "condition": "Luz Intensa",
       "raw_prediction": 4,
-      "confidence": 0.9350406239052934,
+      "confidence": 0.9414616395701451,
       "accepted_command": 4,
-      "mean_latency_ms": 0.0539999979082495,
+      "mean_latency_ms": 0.027509999927133322,
       "outcome": "\u00c9xito"
     },
     {
@@ -960,9 +960,9 @@
       "true_class": 4,
       "condition": "Fondo Complejo",
       "raw_prediction": 4,
-      "confidence": 0.930328765975482,
+      "confidence": 0.9405205690084182,
       "accepted_command": 4,
-      "mean_latency_ms": 0.048869987949728966,
+      "mean_latency_ms": 0.021339993691071868,
       "outcome": "\u00c9xito"
     },
     {
@@ -970,9 +970,9 @@
       "true_class": 4,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 4,
-      "confidence": 0.9521357867014557,
+      "confidence": 0.9368755967259856,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05451999022625387,
+      "mean_latency_ms": 0.02378999488428235,
       "outcome": "\u00c9xito"
     },
     {
@@ -980,9 +980,9 @@
       "true_class": 4,
       "condition": "Normal",
       "raw_prediction": 4,
-      "confidence": 0.9297990350025268,
+      "confidence": 0.9543967693178491,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05090001504868269,
+      "mean_latency_ms": 0.028630008455365896,
       "outcome": "\u00c9xito"
     },
     {
@@ -990,9 +990,9 @@
       "true_class": 4,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 4,
-      "confidence": 0.9162862272262813,
+      "confidence": 0.9254000016166415,
       "accepted_command": 4,
-      "mean_latency_ms": 0.054649991216138005,
+      "mean_latency_ms": 0.02337999758310616,
       "outcome": "\u00c9xito"
     },
     {
@@ -1000,9 +1000,9 @@
       "true_class": 4,
       "condition": "Luz Intensa",
       "raw_prediction": 4,
-      "confidence": 0.9458509258804567,
+      "confidence": 0.9318194004948724,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05294001311995089,
+      "mean_latency_ms": 0.026870000874623656,
       "outcome": "\u00c9xito"
     },
     {
@@ -1010,9 +1010,9 @@
       "true_class": 4,
       "condition": "Fondo Complejo",
       "raw_prediction": 4,
-      "confidence": 0.9242601420750088,
+      "confidence": 0.9619626625665906,
       "accepted_command": 4,
-      "mean_latency_ms": 0.04368000663816929,
+      "mean_latency_ms": 0.021210004342719913,
       "outcome": "\u00c9xito"
     },
     {
@@ -1020,9 +1020,9 @@
       "true_class": 4,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 4,
-      "confidence": 0.9308835061048193,
+      "confidence": 0.9543094716697882,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05608999636024237,
+      "mean_latency_ms": 0.021539977751672268,
       "outcome": "\u00c9xito"
     },
     {
@@ -1030,9 +1030,9 @@
       "true_class": 4,
       "condition": "Normal",
       "raw_prediction": 4,
-      "confidence": 0.9389393544545368,
+      "confidence": 0.9453619921860891,
       "accepted_command": 4,
-      "mean_latency_ms": 0.04897000617347658,
+      "mean_latency_ms": 0.024900009157136083,
       "outcome": "\u00c9xito"
     },
     {
@@ -1040,9 +1040,9 @@
       "true_class": 4,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 4,
-      "confidence": 0.9162893472730662,
+      "confidence": 0.9518489977289855,
       "accepted_command": 4,
-      "mean_latency_ms": 0.04928000853396952,
+      "mean_latency_ms": 0.03512999974191189,
       "outcome": "\u00c9xito"
     },
     {
@@ -1050,9 +1050,9 @@
       "true_class": 4,
       "condition": "Luz Intensa",
       "raw_prediction": 4,
-      "confidence": 0.9386715874928053,
+      "confidence": 0.9476142356748657,
       "accepted_command": 4,
-      "mean_latency_ms": 0.057030003517866135,
+      "mean_latency_ms": 0.05073001375421882,
       "outcome": "\u00c9xito"
     },
     {
@@ -1060,9 +1060,9 @@
       "true_class": 4,
       "condition": "Fondo Complejo",
       "raw_prediction": 4,
-      "confidence": 0.9373321871565173,
+      "confidence": 0.9287645966840911,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05168999778106809,
+      "mean_latency_ms": 0.04224000731483102,
       "outcome": "\u00c9xito"
     },
     {
@@ -1070,9 +1070,9 @@
       "true_class": 4,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 4,
-      "confidence": 0.9562126027961821,
+      "confidence": 0.9514838232826417,
       "accepted_command": 4,
-      "mean_latency_ms": 0.04162000841461122,
+      "mean_latency_ms": 0.06558001041412354,
       "outcome": "\u00c9xito"
     },
     {
@@ -1080,9 +1080,9 @@
       "true_class": 4,
       "condition": "Normal",
       "raw_prediction": 4,
-      "confidence": 0.95198500825848,
+      "confidence": 0.9567039212962579,
       "accepted_command": 4,
-      "mean_latency_ms": 0.056460004998371005,
+      "mean_latency_ms": 0.042640004539862275,
       "outcome": "\u00c9xito"
     },
     {
@@ -1090,19 +1090,19 @@
       "true_class": 4,
       "condition": "Baja Iluminaci\u00f3n",
       "raw_prediction": 4,
-      "confidence": 0.9506529186341615,
+      "confidence": 0.922433800586776,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05310000269673765,
+      "mean_latency_ms": 0.03449000068940222,
       "outcome": "\u00c9xito"
     },
     {
       "trial_id": 98,
       "true_class": 4,
       "condition": "Luz Intensa",
-      "raw_prediction": 4,
-      "confidence": 0.926939337658711,
+      "raw_prediction": 0,
+      "confidence": 0.6959418082723094,
       "accepted_command": 4,
-      "mean_latency_ms": 0.062460004119202495,
+      "mean_latency_ms": 0.0325299974065274,
       "outcome": "\u00c9xito"
     },
     {
@@ -1110,9 +1110,9 @@
       "true_class": 4,
       "condition": "Fondo Complejo",
       "raw_prediction": 4,
-      "confidence": 0.9497968724033448,
+      "confidence": 0.9436201387330387,
       "accepted_command": 4,
-      "mean_latency_ms": 0.05226999055594206,
+      "mean_latency_ms": 0.03284999984316528,
       "outcome": "\u00c9xito"
     },
     {
@@ -1120,9 +1120,9 @@
       "true_class": 4,
       "condition": "Transici\u00f3n R\u00e1pida",
       "raw_prediction": 4,
-      "confidence": 0.9361940010976373,
+      "confidence": 0.9170218256419592,
       "accepted_command": 4,
-      "mean_latency_ms": 0.04208000027574599,
+      "mean_latency_ms": 0.028470001416280866,
       "outcome": "\u00c9xito"
     }
   ],
@@ -1133,7 +1133,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.7463665008545,
+      "execution_duration_ms": 404.40869331359863,
       "overall_task_success": false
     },
     {
@@ -1142,7 +1142,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.47957611083984,
+      "execution_duration_ms": 403.68127822875977,
       "overall_task_success": false
     },
     {
@@ -1151,7 +1151,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.26857566833496,
+      "execution_duration_ms": 403.20873260498047,
       "overall_task_success": false
     },
     {
@@ -1160,7 +1160,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.40518951416016,
+      "execution_duration_ms": 402.9386043548584,
       "overall_task_success": false
     },
     {
@@ -1169,7 +1169,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.84459495544434,
+      "execution_duration_ms": 403.8808345794678,
       "overall_task_success": false
     },
     {
@@ -1178,7 +1178,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 402.6017189025879,
+      "execution_duration_ms": 403.20658683776855,
       "overall_task_success": false
     },
     {
@@ -1187,7 +1187,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.49674224853516,
+      "execution_duration_ms": 402.9569625854492,
       "overall_task_success": false
     },
     {
@@ -1196,7 +1196,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.50818634033203,
+      "execution_duration_ms": 402.54712104797363,
       "overall_task_success": false
     },
     {
@@ -1205,7 +1205,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 403.9943218231201,
+      "execution_duration_ms": 403.9936065673828,
       "overall_task_success": false
     },
     {
@@ -1214,7 +1214,7 @@
       "perception_success": true,
       "command_accepted": true,
       "robot_execution_success": false,
-      "execution_duration_ms": 404.2222499847412,
+      "execution_duration_ms": 402.7669429779053,
       "overall_task_success": false
     }
   ]

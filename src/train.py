@@ -43,8 +43,8 @@ def train_gesture_cnn(
     config_path: str = "config/config.yaml",
     save_dir: str = "models",
     results_dir: str = "results",
-    epochs: int = 25,
-    batch_size: int = 32,
+    epochs: int = 20,
+    batch_size: int = 64,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
     random_seed: int = 42
@@ -105,8 +105,15 @@ def train_gesture_cnn(
         val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False, num_workers=0)
         test_loader = DataLoader(test_ds, batch_size=batch_size, shuffle=False, num_workers=0)
 
+        # Balanced class weights computation (ABET C3 & C4 alignment)
+        counts = [train_labels.count(c) for c in range(num_classes)]
+        total_samples = len(train_labels)
+        class_weights = torch.tensor([total_samples / (num_classes * max(1, c)) for c in counts], dtype=torch.float32).to(device)
+        print(f"[Balance] Distribución de entrenamiento: {counts}")
+        print(f"[Balance] Ponderación de clases aplicada: {class_weights.cpu().numpy().round(3)}")
+
         model = GestureCNN(in_channels=1, num_classes=num_classes).to(device)
-        criterion = nn.CrossEntropyLoss(label_smoothing=0.05)
+        criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=0.05)
         optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay, betas=(0.9, 0.999))
         scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-5)
 
