@@ -250,4 +250,4 @@ Este proyecto y repositorio han sido estructurados para satisfacer y justificar 
 ## 👥 Autores y Contacto
 
 * **Samuel Alejandro Chaparro Ortiz** — [samuelchaparro1233](https://github.com/samuelchaparro1233) — Estudiante de Ingeniería Mecatrónica, Universidad Militar Nueva Granada.  
-* **Equipo:** DeepGesture Robotics (Equipo 7).
+* **Equipo:** Equipo 7.
