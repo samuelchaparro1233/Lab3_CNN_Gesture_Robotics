@@ -1,0 +1,223 @@
+[
+  {
+    "layer_name": "Conv2d_1 + BatchNorm2d_1 + ReLU",
+    "input_shape": [
+      1,
+      1,
+      64,
+      64
+    ],
+    "output_shape": [
+      1,
+      32,
+      64,
+      64
+    ],
+    "kernel_size": "3x3",
+    "stride": 1,
+    "padding": 1,
+    "trainable_params": 352,
+    "mac_flops": 2359296,
+    "receptive_field": 3
+  },
+  {
+    "layer_name": "MaxPool2d_1",
+    "input_shape": [
+      1,
+      32,
+      64,
+      64
+    ],
+    "output_shape": [
+      1,
+      32,
+      32,
+      32
+    ],
+    "kernel_size": "2x2",
+    "stride": 2,
+    "padding": 0,
+    "trainable_params": 0,
+    "mac_flops": 32768,
+    "receptive_field": 4
+  },
+  {
+    "layer_name": "Conv2d_2 + BatchNorm2d_2 + ReLU",
+    "input_shape": [
+      1,
+      32,
+      32,
+      32
+    ],
+    "output_shape": [
+      1,
+      64,
+      32,
+      32
+    ],
+    "kernel_size": "3x3",
+    "stride": 1,
+    "padding": 1,
+    "trainable_params": 18560,
+    "mac_flops": 37748736,
+    "receptive_field": 8
+  },
+  {
+    "layer_name": "MaxPool2d_2",
+    "input_shape": [
+      1,
+      64,
+      32,
+      32
+    ],
+    "output_shape": [
+      1,
+      64,
+      16,
+      16
+    ],
+    "kernel_size": "2x2",
+    "stride": 2,
+    "padding": 0,
+    "trainable_params": 0,
+    "mac_flops": 16384,
+    "receptive_field": 10
+  },
+  {
+    "layer_name": "Conv2d_3 + BatchNorm2d_3 + ReLU",
+    "input_shape": [
+      1,
+      64,
+      16,
+      16
+    ],
+    "output_shape": [
+      1,
+      128,
+      16,
+      16
+    ],
+    "kernel_size": "3x3",
+    "stride": 1,
+    "padding": 1,
+    "trainable_params": 73984,
+    "mac_flops": 37748736,
+    "receptive_field": 18
+  },
+  {
+    "layer_name": "MaxPool2d_3",
+    "input_shape": [
+      1,
+      128,
+      16,
+      16
+    ],
+    "output_shape": [
+      1,
+      128,
+      8,
+      8
+    ],
+    "kernel_size": "2x2",
+    "stride": 2,
+    "padding": 0,
+    "trainable_params": 0,
+    "mac_flops": 8192,
+    "receptive_field": 22
+  },
+  {
+    "layer_name": "Conv2d_4 + BatchNorm2d_4 + ReLU",
+    "input_shape": [
+      1,
+      128,
+      8,
+      8
+    ],
+    "output_shape": [
+      1,
+      256,
+      8,
+      8
+    ],
+    "kernel_size": "3x3",
+    "stride": 1,
+    "padding": 1,
+    "trainable_params": 295424,
+    "mac_flops": 37748736,
+    "receptive_field": 38
+  },
+  {
+    "layer_name": "AdaptiveAvgPool2d_4",
+    "input_shape": [
+      1,
+      256,
+      8,
+      8
+    ],
+    "output_shape": [
+      1,
+      256,
+      4,
+      4
+    ],
+    "kernel_size": "Adaptive (4x4)",
+    "stride": "-",
+    "padding": 0,
+    "trainable_params": 0,
+    "mac_flops": 16384,
+    "receptive_field": 38
+  },
+  {
+    "layer_name": "Flatten",
+    "input_shape": [
+      1,
+      256,
+      4,
+      4
+    ],
+    "output_shape": [
+      1,
+      4096
+    ],
+    "kernel_size": "-",
+    "stride": "-",
+    "padding": "-",
+    "trainable_params": 0,
+    "mac_flops": 0,
+    "receptive_field": 38
+  },
+  {
+    "layer_name": "Dropout(0.4) + Linear_1 + ReLU",
+    "input_shape": [
+      1,
+      4096
+    ],
+    "output_shape": [
+      1,
+      256
+    ],
+    "kernel_size": "Weight: [256, 4096]",
+    "stride": "-",
+    "padding": "-",
+    "trainable_params": 1048832,
+    "mac_flops": 2097152,
+    "receptive_field": 38
+  },
+  {
+    "layer_name": "Dropout(0.3) + Linear_2 (Output Softmax)",
+    "input_shape": [
+      1,
+      256
+    ],
+    "output_shape": [
+      1,
+      5
+    ],
+    "kernel_size": "Weight: [5, 256]",
+    "stride": "-",
+    "padding": "-",
+    "trainable_params": 1285,
+    "mac_flops": 2560,
+    "receptive_field": 38
+  }
+]
