@@ -9,9 +9,9 @@ Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "   Sincronización Automática con GitHub   " -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 
-# 1. Staging de archivos clave del proyecto (código, pesos, métricas, gráficas, docs)
-Write-Host "[1/3] Añadiendo cambios de código, modelos y resultados..." -ForegroundColor Yellow
-git add src/ config/ models/ results/ docs/ scripts/ README.md .gitignore
+# 1. Staging de archivos del proyecto (código, pesos, métricas, gráficas, docs y dataset procesado)
+Write-Host "[1/3] Añadiendo cambios de código, modelos, dataset y resultados..." -ForegroundColor Yellow
+git add src/ config/ models/ results/ docs/ scripts/ README.md .gitignore dataset/train/ dataset/val/ dataset/test/
 
 # 2. Comprobar si hay cambios para commitear
 $changes = git status --porcelain --untracked-files=no
