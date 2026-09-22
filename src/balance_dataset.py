@@ -26,29 +26,54 @@ if PROJECT_ROOT not in sys.path:
 
 
 def _split_block(files: list, n_tr: int, n_va: int, n_te: int):
+    if not files:
+        return [], [], []
+
     needed = n_tr + n_va + n_te
     if needed == 0:
         return [], [], []
 
     s = sorted(files)
-    # Trim initial 2% and trailing 4% transition frames if sequence has room
+    if len(s) == 0:
+        return [], [], []
+
+    # If pool is smaller than requested, adapt quotas proportionally
+    if len(s) < needed:
+        n_tr = int(round(len(s) * 0.70))
+        n_va = int(round(len(s) * 0.15))
+        n_te = len(s) - n_tr - n_va
+        needed = len(s)
+
+    # Trim initial 2% and trailing 4% transition frames if sequence has extra room
     if len(s) > (needed + 10):
         trim_start = max(1, int(len(s) * 0.02))
         trim_end = min(len(s) - 2, int(len(s) * 0.96))
         valid_pool = s[trim_start:trim_end]
+        if len(valid_pool) < needed:
+            valid_pool = s
     else:
         valid_pool = s
 
-    if len(valid_pool) < needed:
-        valid_pool = s
+    if len(valid_pool) == 0:
+        return [], [], []
+
+    needed = min(needed, len(valid_pool))
+    if needed == 0:
+        return [], [], []
 
     idx = np.linspace(0, len(valid_pool) - 1, needed, dtype=int)
     selected = [valid_pool[i] for i in idx]
 
     # Stride test and val across the sequence to ensure representative distributions
-    test_indices = set(np.linspace(0, needed - 1, n_te, dtype=int))
+    n_te = min(n_te, needed)
+    test_indices = set(np.linspace(0, needed - 1, n_te, dtype=int)) if n_te > 0 else set()
     remaining = [i for i in range(needed) if i not in test_indices]
-    val_indices = set([remaining[i] for i in np.linspace(0, len(remaining) - 1, n_va, dtype=int)])
+
+    n_va = min(n_va, len(remaining))
+    if n_va > 0 and len(remaining) > 0:
+        val_indices = set([remaining[i] for i in np.linspace(0, len(remaining) - 1, n_va, dtype=int)])
+    else:
+        val_indices = set()
 
     test_pool = [selected[i] for i in test_indices]
     val_pool = [selected[i] for i in val_indices]
@@ -62,6 +87,9 @@ def sample_contiguous_split(files: list, n_train: int, n_val: int, n_test: int):
     Splits files ensuring both hands (der/izq) are proportionally distributed
     into Train, Val, and Test without temporal interleaving within each burst.
     """
+    if not files:
+        return [], [], []
+
     der_files = [f for f in files if "_der_" in f]
     izq_files = [f for f in files if "_izq_" in f]
 
@@ -94,20 +122,31 @@ def balance_and_split_dataset(
 
     classes = ["0_dedos", "1_dedo", "2_dedos", "3_dedos", "4_dedos"]
 
-    subject_quotas = {
-        "subj_01":   {"train": 380, "val": 70, "test": 70},
-        "subj_02":   {"train": 70,  "val": 15, "test": 15},
-        "subj_user": {"train": 50,  "val": 15, "test": 15}
+    default_quotas = {
+        "subj_01":   {"train": 350, "val": 75,  "test": 75},   # 500 por clase
+        "subj_02":   {"train": 70,  "val": 15,  "test": 15},   # 100 por clase
+        "subj_user": {"train": 50,  "val": 15,  "test": 15}    # 80 por clase
     }
 
+    # Discover which subjects actually have images in raw_dir
+    discovered_subjects = set()
+    for c in classes:
+        c_raw = os.path.join(raw_dir, c)
+        if os.path.exists(c_raw):
+            for f in glob.glob(os.path.join(c_raw, "*.*")):
+                parts = os.path.basename(f).split("_")
+                if len(parts) >= 2:
+                    discovered_subjects.add(f"{parts[0]}_{parts[1]}")
+
+    if not discovered_subjects:
+        print(f"[Aviso] No se encontraron imágenes en {raw_dir}. Primero captura con: python src/collect_data.py")
+        return
+
     print("=" * 80)
-    print("BALANCEO Y PARTICIÓN MULTI-SUJETO DEL DATASET (CERO FUGA DE DATOS)")
+    print("BALANCEO Y PARTICIÓN DINÁMICA DEL DATASET (CERO FUGA DE DATOS)")
     print(f"Origen: {raw_dir}")
     print(f"Destino: {output_base}/[train, val, test]")
-    print("Cuotas por sujeto en cada clase:")
-    for s, q in subject_quotas.items():
-        print(f"  - {s}: Train={q['train']}, Val={q['val']}, Test={q['test']} (Total {sum(q.values())})")
-    print("Total por clase: Train=500, Val=100, Test=100 (Total 700 / clase, 3,500 dataset)")
+    print(f"Sujetos detectados en raw: {sorted(list(discovered_subjects))}")
     print("=" * 80)
 
     # Clean destination folders
@@ -138,14 +177,24 @@ def balance_and_split_dataset(
         for f in raw_files:
             fname = os.path.basename(f)
             parts = fname.split("_")
-            subj_key = parts[0] + "_" + parts[1]
-            if subj_key not in subject_quotas:
-                subj_key = "subj_01"
+            subj_key = f"{parts[0]}_{parts[1]}" if len(parts) >= 2 else "subj_01"
             by_subject[subj_key].append(f)
 
-        for subj, quotas in subject_quotas.items():
+        for subj in sorted(discovered_subjects):
             pool = by_subject.get(subj, [])
-            n_tr, n_va, n_te = quotas["train"], quotas["val"], quotas["test"]
+            if not pool:
+                continue
+
+            n_pool = len(pool)
+            if subj in default_quotas and n_pool >= sum(default_quotas[subj].values()):
+                n_tr = default_quotas[subj]["train"]
+                n_va = default_quotas[subj]["val"]
+                n_te = default_quotas[subj]["test"]
+            else:
+                n_tr = int(round(n_pool * 0.70))
+                n_va = int(round(n_pool * 0.15))
+                n_te = n_pool - n_tr - n_va
+
             tr_files, va_files, te_files = sample_contiguous_split(pool, n_tr, n_va, n_te)
 
             for p in tr_files:
@@ -167,12 +216,13 @@ def balance_and_split_dataset(
 
     print("\n" + "=" * 80)
     print("RESUMEN DE PARTICIÓN MULTI-PARTICIPANTE:")
-    for subj in sorted(subject_quotas.keys()):
-        print(f"  - {subj}: Train={subj_summary[subj]['train']}, Val={subj_summary[subj]['val']}, Test={subj_summary[subj]['test']} (Total {sum(subj_summary[subj].values())})")
+    for subj in sorted(discovered_subjects):
+        tot = sum(subj_summary[subj].values())
+        print(f"  - {subj}: Train={subj_summary[subj]['train']}, Val={subj_summary[subj]['val']}, Test={subj_summary[subj]['test']} (Total {tot})")
     print(f"\nTOTALES FINALES:")
-    print(f"  - Train: {sum(summary['train'].values())} imágenes ({summary['train']})")
-    print(f"  - Val:   {sum(summary['val'].values())} imágenes ({summary['val']})")
-    print(f"  - Test:  {sum(summary['test'].values())} imágenes ({summary['test']})")
+    print(f"  - Train: {sum(summary['train'].values())} imágenes")
+    print(f"  - Val:   {sum(summary['val'].values())} imágenes")
+    print(f"  - Test:  {sum(summary['test'].values())} imágenes")
     print(f"  - Gran Total Curado: {sum(summary['train'].values()) + sum(summary['val'].values()) + sum(summary['test'].values())} imágenes.")
     print("=" * 80)
 
