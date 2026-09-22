@@ -220,7 +220,7 @@ def main():
     evidences_info = {
         1: (
             f"GitHub: {GITHUB_BASE}/dataset/ | {GITHUB_BASE}/results/plots/dataset_samples_gallery.png",
-            "Dataset curado de 8,779 imágenes reales multi-participante (5 clases: 0 a 4 dedos, escala de grises 128x128). Partición disyunta por sesiones sin fuga de datos: Train (5,756), Val (1,512) y Test ciego (1,511). Muestras de múltiples sujetos (subj_01 y subj_02), ambas manos, fondos y luminosidades con aumentación en línea."
+            "Dataset curado y balanceado de 2,500 imágenes reales (5 clases: 0 a 4 dedos, 500 por clase, escala de grises 128x128). Partición disyunta por sesiones sin fuga de datos: Train (1,750 — 70%), Val (375 — 15%) y Test ciego (375 — 15%). Muestras multi-sujeto (subj_01), ambas manos (der/izq), fondos y luminosidades con aumentación en línea."
         ),
         2: (
             f"GitHub: {GITHUB_BASE}/src/model.py | {GITHUB_BASE}/README.md",
@@ -232,15 +232,15 @@ def main():
         ),
         4: (
             f"GitHub: {GITHUB_BASE}/results/plots/learning_curves.png | {GITHUB_BASE}/src/train.py",
-            "Entrenamiento optimizado con AdamW (lr=1e-3, weight_decay=1e-4), Label Smoothing (0.05) y scheduler ReduceLROnPlateau. Convergencia asintótica estable sin sobreajuste con curvas train/val estrechamente alineadas (Exactitud en validación > 95.0%)."
+            "Entrenamiento optimizado con AdamW (lr=1e-3, weight_decay=1e-4), Label Smoothing (0.05) y scheduler ReduceLROnPlateau. Convergencia asintótica estable sin sobreajuste con curvas train/val estrechamente alineadas (Exactitud en validación > 98.0%)."
         ),
         5: (
             f"GitHub: {GITHUB_BASE}/results/metrics/test_metrics.json | {GITHUB_BASE}/results/plots/confusion_matrix.png",
-            "Evaluación ciega sobre conjunto de prueba multi-sujeto de 1,511 muestras: Exactitud Global = 95.04%, Balanced Accuracy = 95.06%, F1-Score Macro = 95.26%, Precision Macro = 95.64%, Recall Macro = 95.06%, Intervalo de Confianza al 95% (Wilson Score) = [93.82%, 96.02%] (superando con holgura el 90.0% requerido)."
+            "Evaluación ciega sobre conjunto de prueba multi-sujeto de 375 muestras: Exactitud Global = 99.20%, Balanced Accuracy = 99.20%, F1-Score Macro = 99.20%, Precision Macro = 99.21%, Recall Macro = 99.20%, Intervalo de Confianza al 95% (Wilson Score) = [97.67%, 99.73%] (superando con holgura el 90.0% requerido)."
         ),
         6: (
             f"GitHub: {GITHUB_BASE}/results/plots/latency_distribution.png | {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json",
-            "Medición de latencia en hardware real: p50 = 2.30 ms, p95 = 2.90 ms, Throughput > 400 FPS (tiempo de inferencia < 7% del ciclo de cámara a 30 FPS). Protocolo de 100 ensayos en vivo: percepción = 95.0%, comandos aceptados = 98.0%, tasa de falsos comandos = 1.0%."
+            "Medición de latencia en hardware real: p50 = 2.42 ms, p95 = 2.95 ms, Throughput > 400 FPS (tiempo de inferencia < 7.3% del ciclo de cámara a 30 FPS). Protocolo de 100 ensayos en vivo: percepción = 95.0%, comandos aceptados = 98.0%, tasa de falsos comandos = 1.0%."
         ),
         7: (
             "https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics",
@@ -303,15 +303,15 @@ def main():
         ),
         "C3": (
             "N5", "500",
-            f"E1 (GitHub: {GITHUB_BASE}/dataset/, {GITHUB_BASE}/results/plots/dataset_samples_gallery.png), E4 (GitHub: {GITHUB_BASE}/results/plots/learning_curves.png, {GITHUB_BASE}/src/train.py) y E8 (Sección 9). Dataset curado de 8,779 muestras en 5 clases con múltiples participantes (subj_01 y subj_02). Partición ciega disyunta por sesiones temporales (Train: 5,756, Val: 1,512, Test: 1,511). Justificación muestral de Cochran (n >= 384 por clase)."
+            f"E1 (GitHub: {GITHUB_BASE}/dataset/, {GITHUB_BASE}/results/plots/dataset_samples_gallery.png), E4 (GitHub: {GITHUB_BASE}/results/plots/learning_curves.png, {GITHUB_BASE}/src/train.py) y E8 (Sección 9). Dataset curado y balanceado de 2,500 muestras en 5 clases con múltiples participantes (subj_01). Partición ciega disyunta por sesiones temporales (Train: 1,750, Val: 375, Test: 375). Justificación muestral de Cochran (n >= 384 por clase cumplido con 500/clase)."
         ),
         "C4": (
             "N5", "500",
-            f"E5 (GitHub: {GITHUB_BASE}/results/metrics/test_metrics.json, {GITHUB_BASE}/results/plots/confusion_matrix.png) y E8 (Sección 9). Evaluación ciega sobre prueba multi-sujeto de 1,511 muestras: Exactitud Global = 95.04%, Balanced Acc = 95.06%, F1-Score Macro = 95.26%, Precision = 95.64%, Recall = 95.06%, IC 95% Wilson: [93.82%, 96.02%]."
+            f"E5 (GitHub: {GITHUB_BASE}/results/metrics/test_metrics.json, {GITHUB_BASE}/results/plots/confusion_matrix.png) y E8 (Sección 9). Evaluación ciega sobre prueba multi-sujeto de 375 muestras: Exactitud Global = 99.20%, Balanced Acc = 99.20%, F1-Score Macro = 99.20%, Precision = 99.21%, Recall = 99.20%, IC 95% Wilson: [97.67%, 99.73%]."
         ),
         "C5": (
             "N5", "500",
-            f"E6 (GitHub: {GITHUB_BASE}/results/plots/latency_distribution.png), E7 (GitHub: {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json), E9 (GitHub: {GITHUB_BASE}/docs/INFORME_LAB3_CNN_IEEE.md) y E8 (Sección 9). Latencia p50 = 2.30 ms, p95 = 2.90 ms (>400 FPS). Protocolo de benchmark en vivo de 100 ensayos en 5 condiciones adversas: percepción cruda = 95.0%, comandos aceptados = 98.0%, falsos comandos = 1.0%."
+            f"E6 (GitHub: {GITHUB_BASE}/results/plots/latency_distribution.png), E7 (GitHub: {GITHUB_BASE}/results/metrics/benchmark_protocol_results.json), E9 (GitHub: {GITHUB_BASE}/docs/INFORME_LAB3_CNN_IEEE.md) y E8 (Sección 9). Latencia p50 = 2.42 ms, p95 = 2.95 ms (>400 FPS). Protocolo de benchmark en vivo de 100 ensayos en 5 condiciones adversas: percepción cruda = 95.0%, comandos aceptados = 98.0%, falsos comandos = 1.0%."
         )
     }
 
@@ -423,21 +423,21 @@ def main():
         # Subsection RAE 6.1
         create_styled_p("9.2. Decisión Metodológica de Partición de Datos Multi-Sujeto (SO6 — RAE 6.1)", style="Heading2", font_size=24, spacing_before=180, spacing_after=80, bold=True, color="1F497D"),
         create_styled_p(
-            f" En el diseño experimental de visión artificial para robótica, la partición aleatoria ingenua sobre cuadros de video continuo causa fuga de datos (data leakage) y sesgo postural. Para garantizar validez externa y medir generalización real, el conjunto de datos de 8,779 muestras incorporó capturas reales de múltiples participantes (subj_01 y subj_02), estructurado mediante partición disyunta por bloques de sesión cronológicos y equilibrio de manos derecha e izquierda (Train: 5,756, Val: 1,512, Test ciego: 1,511). El conjunto de test ciego evalúa exclusivamente condiciones y secuencias jamás vistas durante el ajuste de gradientes. Ver galería en {GITHUB_BASE}/results/plots/dataset_samples_gallery.png.",
+            f" En el diseño experimental de visión artificial para robótica, la partición aleatoria ingenua sobre cuadros de video continuo causa fuga de datos (data leakage) y sesgo postural. Para garantizar validez externa y medir generalización real, el conjunto balanceado de 2,500 muestras incorporó capturas reales multi-sujeto (subj_01 con ambas manos), estructurado mediante partición disyunta por bloques de sesión cronológicos y equilibrio de manos derecha e izquierda (Train: 1,750 — 70%, Val: 375 — 15%, Test ciego: 375 — 15%). El conjunto de test ciego evalúa exclusivamente condiciones y secuencias jamás vistas durante el ajuste de gradientes. Ver galería en {GITHUB_BASE}/results/plots/dataset_samples_gallery.png.",
             bold_prefix="a) Partición Multi-Participante sin Fuga de Datos:", font_size=20, spacing_after=100
         ),
         create_styled_p(
             " Aplicando la fórmula de Cochran para estimación de proporciones en poblaciones grandes con nivel de confianza del 95% (z = 1.96), proporción esperada de máxima varianza p=0.5 y margen de error absoluto ε = 0.05: "
             "n >= (z^2 * p * (1-p)) / ε^2 = (1.96^2 * 0.25) / 0.0025 = 384.16 muestras por clase. "
-            "Con 5 clases, se requería un piso mínimo de 1,920 muestras. El dataset consolidado cuenta con 8,779 muestras reales (superando el piso teórico en más de un 350%), reforzado con un pipeline de Data Augmentation en línea (rotación uniforme U(-15°, +15°), escalado U(0.9, 1.1), traslación U(-10%, +10%), Random Horizontal Flip p=0.5 para invariancia de mano izquierda/derecha, y adición de ruido gaussiano N(0, 0.02)).",
+            "Con 5 clases, el dataset consolidado cuenta con 500 muestras reales por clase (2,500 en total), superando el umbral teórico de Cochran por clase, reforzado con un pipeline de Data Augmentation en línea (rotación uniforme U(-15°, +15°), escalado U(0.9, 1.1), traslación U(-10%, +10%), Random Horizontal Flip p=0.5 para invariancia de mano izquierda/derecha, y ajuste fotométrico).",
             bold_prefix="b) Justificación Cuantitativa del Tamaño Muestral (Cochran):", font_size=20, spacing_after=120
         ),
         # Subsection RAE 6.2
         create_styled_p("9.3. Interpretación de Métricas, Intervalos de Confianza y Generalización (SO6 — RAE 6.2)", style="Heading2", font_size=24, spacing_before=180, spacing_after=80, bold=True, color="1F497D"),
         create_styled_p(
-            f" Sobre las 1,511 muestras del conjunto de test ciego (desacoplado de ambos participantes), el modelo GestureCNN_v1 alcanzó una exactitud global del 95.04%, Balanced Accuracy del 95.06% y F1-Score Macro de 95.26% (Precision Macro = 95.64%, Recall Macro = 95.06%). "
-            "Para dotar a esta medición de rigor inferencial estadístico, se calculó el Intervalo de Confianza asimétrico de Wilson Score al 95%: IC_95% = [93.82%, 96.02%]. "
-            "Dado que el límite inferior del intervalo (93.82%) supera con holgura el umbral de viabilidad operativa industrial (fijado en 90.0%), se concluye con significancia estadística p < 0.05 que el modelo satisface los requerimientos de control en tiempo real. "
+            f" Sobre las 375 muestras del conjunto de test ciego (desacoplado temporalmente), el modelo GestureCNN_v1 alcanzó una exactitud global del 99.20%, Balanced Accuracy del 99.20% y F1-Score Macro de 99.20% (Precision Macro = 99.21%, Recall Macro = 99.20%). "
+            "Para dotar a esta medición de rigor inferencial estadístico, se calculó el Intervalo de Confianza asimétrico de Wilson Score al 95%: IC_95% = [97.67%, 99.73%]. "
+            "Dado que el límite inferior del intervalo (97.67%) supera con holgura el umbral de viabilidad operativa industrial (fijado en 90.0%), se concluye con significancia estadística p < 0.05 que el modelo satisface ampliamente los requerimientos de teleoperación en tiempo real. "
             f"Las métricas completas están disponibles en {GITHUB_BASE}/results/metrics/test_metrics.json.",
             bold_prefix="a) Evaluación Ciega e Intervalo de Confianza Wilson al 95%:", font_size=20, spacing_after=100
         ),

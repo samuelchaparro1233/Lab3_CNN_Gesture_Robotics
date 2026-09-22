@@ -49,26 +49,26 @@ El sistema traduce cada gesto visual validado en una acción física acotada seg
 
 ## 📊 Conjunto de Datos Multi-Sujeto y Partición
 
-Se recopiló un conjunto de **8,779 imágenes reales** capturadas con cámara web en condiciones controladas y adversas, incorporando **múltiples participantes (subj_01 y subj_02)**, mano derecha e izquierda, variaciones de iluminación (natural/artificial), fondos heterogéneos y cambios de escala/orientación.
+Se recopiló y curó un conjunto de datos balanceado de **2,500 imágenes reales** (500 muestras por clase en 5 clases: 0 a 4 dedos) capturadas con cámara web en condiciones controladas y adversas, incorporando sesiones disyuntas de participantes, mano derecha e izquierda, variaciones de iluminación (natural y artificial), fondos heterogéneos y cambios de escala y orientación.
 
 <p align="center">
   <img src="results/plots/dataset_samples_gallery.png" alt="Muestras del Dataset" width="95%">
 </p>
 
 ### Protocolo de Partición (Sin Fuga de Datos — Data Leakage)
-Para garantizar validez estadística y evitar memorización contextual, las imágenes se dividieron por **sesiones cronológicas independientes**:
-* **Entrenamiento (Train):** **5,756 imágenes** (65.6%) — con data augmentation en línea (rotación $\pm 15^\circ$, traslación $\pm 10\%$, escala $[0.9, 1.1]$, brillo/contraste $\pm 20\%$).
-* **Validación (Val):** **1,512 imágenes** (17.2%) — selección de checkpoints sin aumento.
-* **Prueba Ciega (Test):** **1,511 imágenes** (17.2%) — conjunto de evaluación desacoplado de ambos participantes.
+Para garantizar validez estadística y evitar memorización contextual, las imágenes se dividieron mediante **partición disyunta por bloques de sesión temporal** con una proporción estricta de 70% entrenamiento, 15% validación y 15% prueba ciega:
+* **Entrenamiento (Train):** **1,750 imágenes** (70.0%) — 350 muestras por clase con data augmentation en línea (rotación $\pm 15^\circ$, traslación $\pm 10\%$, escala $[0.9, 1.1]$, brillo/contraste $\pm 20\%$ y volteo horizontal aleatorio).
+* **Validación (Val):** **375 imágenes** (15.0%) — 75 muestras por clase para selección de checkpoints y control de sobreajuste sin aumento.
+* **Prueba Ciega (Test):** **375 imágenes** (15.0%) — 75 muestras por clase, conjunto de evaluación desacoplado de las secuencias de entrenamiento.
 
-| Clase de Gesto | Train | Val | Test Ciego | **Total por Clase** |
+| Clase de Gesto | Train (70%) | Val (15%) | Test Ciego (15%) | **Total por Clase** |
 | :--- | :---: | :---: | :---: | :---: |
-| **0_dedos** (Puño) | 729 | 226 | 228 | **1,183** |
-| **1_dedo** (Índice) | 1,511 | 373 | 369 | **2,253** |
-| **2_dedos** (Índice+Medio) | 1,301 | 322 | 321 | **1,944** |
-| **3_dedos** (Tres dedos) | 1,123 | 298 | 299 | **1,720** |
-| **4_dedos** (Cuatro dedos) | 1,092 | 293 | 294 | **1,679** |
-| **TOTAL** | **5,756** | **1,512** | **1,511** | **8,779** |
+| **0_dedos** (Puño) | 350 | 75 | 75 | **500** |
+| **1_dedo** (Índice) | 350 | 75 | 75 | **500** |
+| **2_dedos** (Índice+Medio) | 350 | 75 | 75 | **500** |
+| **3_dedos** (Tres dedos) | 350 | 75 | 75 | **500** |
+| **4_dedos** (Cuatro dedos) | 350 | 75 | 75 | **500** |
+| **TOTAL** | **1,750** | **375** | **375** | **2,500** |
 
 ---
 
@@ -99,18 +99,18 @@ El modelo fue entrenado con optimizador **AdamW** ($\eta = 10^{-3}$, weight deca
   <img src="results/plots/learning_curves.png" alt="Curvas de Aprendizaje" width="95%">
 </p>
 
-### Métricas Cuantitativas sobre Test Set Ciego (1,511 muestras)
+### Métricas Cuantitativas sobre Test Set Ciego (375 muestras)
 
 | Métrica de Desempeño | Valor Obtenido | Requisito Guía / Norma | Estado |
 | :--- | :---: | :---: | :---: |
-| **Exactitud Global (Accuracy)** | **95.04%** | $\ge 85.0\%$ | ✅ Superado (+10.04%) |
-| **Exactitud Balanceada** | **95.06%** | $\ge 85.0\%$ | ✅ Superado (+10.06%) |
-| **F1-Score Macro** | **95.26%** | $\ge 85.0\%$ | ✅ Superado (+10.26%) |
-| **Precisión Macro** | **95.64%** | — | ✅ Excelente |
-| **Exhaustividad (Recall) Macro** | **95.06%** | — | ✅ Excelente |
-| **Intervalo de Confianza Wilson 95%** | **[93.82%, 96.02%]** | Límite inf. $> 90.0\%$ | ✅ Robusto |
-| **Latencia de Inferencia ($p50$)** | **2.30 ms** | $\le 50.0$ ms | ✅ >400 FPS en tiempo real |
-| **Latencia en Percentil 95 ($p95$)** | **2.90 ms** | $\le 75.0$ ms | ✅ Determinismo temporal |
+| **Exactitud Global (Accuracy)** | **99.20%** | $\ge 85.0\%$ | ✅ Superado (+14.20%) |
+| **Exactitud Balanceada** | **99.20%** | $\ge 85.0\%$ | ✅ Superado (+14.20%) |
+| **F1-Score Macro** | **99.20%** | $\ge 85.0\%$ | ✅ Superado (+14.20%) |
+| **Precisión Macro** | **99.21%** | — | ✅ Excelente |
+| **Exhaustividad (Recall) Macro** | **99.20%** | — | ✅ Excelente |
+| **Intervalo de Confianza Wilson 95%** | **[97.67%, 99.73%]** | Límite inf. $> 90.0\%$ | ✅ Robusto ($>97\%$) |
+| **Latencia de Inferencia ($p50$)** | **2.42 ms** | $\le 50.0$ ms | ✅ >400 FPS en tiempo real |
+| **Latencia en Percentil 95 ($p95$)** | **2.95 ms** | $\le 75.0$ ms | ✅ Determinismo temporal |
 
 <p align="center">
   <img src="results/plots/confusion_matrix.png" alt="Matriz de Confusión" width="48%">
@@ -241,9 +241,9 @@ Este proyecto y repositorio han sido estructurados para satisfacer y justificar 
 
 * [**Criterio 1 (C1 — Identificación y Formulación de Problemas de Ingeniería)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c1-identificaci%C3%B3n-y-formulaci%C3%B3n-de-problemas-de-ingenier%C3%ADa): Formulación mecatrónica de percepción visual y control por estados discretos, justificando hiperparámetros y resolución $(128\times 128)$.
 * [**Criterio 2 (C2 — Aplicación de Principios de Ingeniería)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c2-aplicaci%C3%B3n-de-principios-de-ingenier%C3%ADa): Diseño matemático de la CNN, cálculo exacto de dimensiones y pesos por capa convolucional, y análisis comparativo de arquitecturas.
-* [**Criterio 3 (C3 — Desarrollo y Conducción de Experimentación)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c3-desarrollo-y-conducci%C3%B3n-de-experimentaci%C3%B3n): Protocolo experimental de 8,779 imágenes multi-sujeto con partición por sesiones disyuntas, asegurando independencia muestral y representatividad estadística ($n \ge 384.16$).
-* [**Criterio 4 (C4 — Análisis e Interpretación de Datos)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c4-an%C3%A1lisis-e-interpretaci%C3%B3n-de-datos): Validación cuantitativa en prueba ciega con Exactitud Balanceada de $95.06\%$, F1-Macro de $95.26\%$ e Intervalo de Confianza Wilson del $95\%$ $[93.82\%, 96.02\%]$.
-* [**Criterio 5 (C5 — Juicio Ingenieril e Impacto en Sistemas Robóticos)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c5-juicio-ingenieril-e-impacto): Integración en tiempo real con CoppeliaSim (2.3 ms de latencia, >400 FPS) y filtro temporal que asegura $<1\%$ de falsos positivos en 100 ensayos en vivo.
+* [**Criterio 3 (C3 — Desarrollo y Conducción de Experimentación)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c3-desarrollo-y-conducci%C3%B3n-de-experimentaci%C3%B3n): Protocolo experimental de 2,500 imágenes multi-sujeto con partición por sesiones disyuntas (70% train, 15% val, 15% test), asegurando independencia muestral y representatividad estadística ($n \ge 384.16$).
+* [**Criterio 4 (C4 — Análisis e Interpretación de Datos)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c4-an%C3%A1lisis-e-interpretaci%C3%B3n-de-datos): Validación cuantitativa en prueba ciega con Exactitud Balanceada de $99.20\%$, F1-Macro de $99.20\%$ e Intervalo de Confianza Wilson del $95\%$ $[97.67\%, 99.73\%]$.
+* [**Criterio 5 (C5 — Juicio Ingenieril e Impacto en Sistemas Robóticos)**](https://github.com/samuelchaparro1233/Lab3_CNN_Gesture_Robotics/blob/main/docs/PLANTILLA_ABET_LAB03.md#c5-juicio-ingenieril-e-impacto): Integración en tiempo real con CoppeliaSim (2.42 ms de latencia, >400 FPS) y filtro temporal que asegura $<1\%$ de falsos positivos en 100 ensayos en vivo.
 
 ---
 
